@@ -1,0 +1,310 @@
+.cartContainer {
+  padding: 10rem 2%;
+
+  .necessities {
+    .cartHeader {
+      button:hover {
+        color: red;
+
+        background-color: transparent;
+        border: 1px solid red;
+      }
+
+      button {
+        font-size: 2rem;
+        background-color: red;
+        height: 4rem;
+        cursor: pointer;
+        transition: all 0.5s ease;
+        padding: 0 1rem;
+        color: white;
+        border: 1px solid transparent;
+      }
+      a {
+        margin: 1rem 0;
+        border: 1px solid rgb(52, 152, 219);
+        color: rgb(52, 152, 219) !important;
+        transition: all 1s ease;
+        display: inline-block;
+        line-height: 4rem;
+        text-align: center;
+        padding: 0 2rem;
+
+        div {
+          font-size: 2rem;
+        }
+      }
+    }
+
+    .cartHeader > a:hover {
+      background-color: rgb(52, 152, 219);
+      color: white !important;
+    }
+
+    p {
+      a {
+        font-size: 2rem;
+      }
+
+      div {
+        font-size: 1.5rem;
+      }
+
+      a:nth-last-child(1) {
+        color: rgb(52, 152, 219) !important;
+      }
+    }
+  }
+
+  .cartCont {
+    justify-content: space-between;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    .checkOut {
+      flex-basis: calc(30% - 2rem);
+      flex-grow: 1;
+      height: 70%;
+      flex-shrink: 1;
+      background-color: rgba(31, 41, 55);
+
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.582);
+      justify-content: space-between;
+      border-radius: 0.5rem;
+
+      .orderHeader {
+        padding: 1.5rem 1rem;
+        display: flex;
+
+        p {
+          font-size: 2.2rem;
+          color: var(--primary-color);
+        }
+
+        border-bottom: 1px solid rgba(255, 255, 255, 0.185);
+      }
+
+      .subtotal {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.185);
+        padding: 2rem 1rem;
+        display: flex;
+
+        &:nth-child(2) {
+          p:nth-child(2) {
+            color: rgba(255, 255, 255);
+          }
+        }
+
+        &:nth-child(3) {
+          p:nth-child(2) {
+            color: rgba(255, 255, 255);
+          }
+        }
+        &:nth-child(4) {
+          p {
+            color: rgba(255, 255, 255);
+          }
+        }
+        p {
+          color: rgba(255, 255, 255, 0.767);
+          font-size: 2rem;
+        }
+      }
+
+      .deliveryCharges {
+        display: flex;
+        justify-content: end !important;
+        width: 100%;
+        padding: 1rem;
+
+        p {
+          font-size: 2rem;
+        }
+      }
+    }
+
+    .cartItemContainer {
+      display: flex;
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.582);
+      flex-wrap: wrap;
+      flex-basis: calc(70% - 1rem);
+      flex-grow: 1;
+      flex-shrink: 1;
+      border-radius: 0.5rem;
+
+      height: 100%;
+
+      .cartItem:last-child {
+        border: none;
+      }
+      .cartItem {
+        background-color: rgba(31, 41, 55);
+        padding: 1rem;
+        width: 100%;
+        justify-content: space-between;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.185);
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+
+        .image {
+          img {
+            height: 13rem;
+            width: 15rem;
+          }
+        }
+
+        .details {
+          p:nth-child(1) {
+            font-size: 2rem;
+          }
+
+          p:nth-child(2) {
+            color: rgba(255, 255, 255, 0.671);
+            font-size: 1.5rem;
+          }
+        }
+
+        .changes {
+          display: flex;
+          align-items: center;
+
+          button {
+            background-color: transparent;
+            font-size: 2rem;
+            color: rgb(52, 152, 219) !important;
+            height: 3rem;
+            width: 3rem;
+            cursor: pointer;
+            border: 1px solid rgb(52, 152, 219);
+          }
+
+          input:focus {
+            // border:transparent;background: #000;
+          }
+
+          input {
+            background-color: transparent;
+            font-size: 2rem;
+            color: rgb(52, 152, 219) !important;
+            height: 3rem;
+            width: 3rem;
+            text-align: center;
+            border: 1px solid rgb(52, 152, 219);
+          }
+        }
+
+        .remove {
+          button:hover {
+            color: red;
+
+            background-color: transparent;
+            border: 1px solid red;
+          }
+
+          button {
+            font-size: 1.7rem;
+            background-color: red;
+            height: 4rem;
+            cursor: pointer;
+            transition: all 0.5s ease;
+            padding: 0 1rem;
+            color: white;
+            border: 1px solid transparent;
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 670px) {
+  .cartContainer {
+    padding: 10rem 0;
+    .necessities {
+      padding: 0 2%;
+    }
+    .cartCont {
+      .cartItemContainer {
+        gap: 2rem;
+        box-shadow: none;
+        justify-content: center;
+        .cartItem {
+          padding: 1rem 1rem 1.5rem;
+          width: auto;
+          align-items: center;
+          border-radius: 0.5rem;
+          border: none;
+          gap: 1rem;
+          text-align: center;
+          box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.582);
+          flex-direction: column;
+          .image {
+            img {
+              height: 27rem;
+              width: 30rem;
+            }
+          }
+          .details {
+            padding: 0.5rem 0;
+          }
+          .changes {
+            padding: 0.5rem 0;
+          }
+          .remove {
+            button {
+              font-size: 2rem;
+            }
+          }
+        }
+      }
+    }
+    .checkOut {
+      position: fixed !important;
+      bottom: 0 !important;
+      width: 100%;
+      padding: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center !important;
+      justify-content: center !important;
+      height: 6rem !important;
+      .checkOutBtnContainer {
+        button {
+          width: 90vw !important;
+          height: 5rem;
+          font-size: 2rem;
+          text-align: center;
+          border-radius: 0.7rem;
+          display: block !important;
+        }
+      }
+      .orderHeader,
+      .subtotal,
+      .deliveryCharges {
+        display: none !important;
+      }
+    }
+  }
+}
+@media (min-width: 670px) {
+  .checkOut {
+    position: sticky;
+    top: 10%;
+
+    .checkOutBtnContainer {
+      display: flex;
+      justify-self: center !important;
+      padding: 1rem;
+
+      button {
+        width: 25rem !important;
+        height: 5rem;
+        font-size: 2rem;
+        text-align: center;
+        border-radius: 0.7rem;
+        display: block !important;
+      }
+    }
+  }
+}
