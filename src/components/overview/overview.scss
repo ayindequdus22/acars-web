@@ -18,9 +18,11 @@
       .details {
         padding: 2rem 0 0rem;
 
-        button {
-          height: 4rem;
-          width: 13rem;
+        a {
+         height: 4rem;
+          display: inline-flex;
+          align-items: center;
+          padding: 0 1.5rem;
           border-radius: 5px;
           cursor: pointer;
         }

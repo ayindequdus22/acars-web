@@ -4,10 +4,10 @@ import Overview from '../../components/overview/Overview'
 
 const Home = () => {
   return (
-<>
-<Body/>
-<Overview/>
-</>  )
+    <>
+      <Body />
+      <Overview />
+    </>)
 }
 
 export default Home

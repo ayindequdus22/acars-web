@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
@@ -13,16 +13,15 @@ import {
   selectTotalQTY,
 } from "../../store/cartSlice";
 import "./cart.scss";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Cart = () => {
-  const [increasedQty,setIncreasedQty] = useState('')
   const dispatch = useDispatch();
   const cartItems = useSelector(cartProducts);
   const totalAmount = useSelector(selectTotalAmount);
   const totalQTY = useSelector(selectTotalQTY);
-  // console.log(cartItems.length);
+
   useEffect(() => {
     dispatch(setGetTotals());
   }, [cartItems, dispatch]);
@@ -42,10 +41,10 @@ const Cart = () => {
               <div className="cartHeader df-jsb-ac">
                 <Link to={"/"} className="">
                   <div className="fa fa-arrow-left"></div>
-                  <span style={{paddingLeft:"1rem"}}>Continue Shopping</span>
+                  <span style={{ paddingLeft: "1rem" }}>Continue Shopping</span>
                 </Link>
                 <div className="clearBtn">
-                  <button onClick={() =>dispatch(setClearCartItems())}>
+                  <button onClick={() => dispatch(setClearCartItems())}>
                     Clear Cart
                   </button>
                 </div>
@@ -58,7 +57,7 @@ const Cart = () => {
                   let newPrice = (
                     cartItem.price * cartItem.cartQuantity
                   ).toFixed(2);
-               
+
                   return (
                     <>
                       <div className="cartItem" key={cartItem.id}>
@@ -78,7 +77,7 @@ const Cart = () => {
                             -
                           </button>
                           <input
-                            onChange={(event) => {setIncreasedQty(event.target.value)}}
+                        
                             type="text"
                             onSubmit={() => {
                               dispatch(upDateItemQty({ cartItem }));

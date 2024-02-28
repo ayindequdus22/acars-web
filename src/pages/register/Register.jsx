@@ -18,7 +18,7 @@ const Register = () => {
             <input type="password" placeholder="Password" />
 
           </div>
-            <div className="">
+          <div className="">
 
             <input type="password" placeholder="Confirm Password" />
           </div>
@@ -31,8 +31,8 @@ const Register = () => {
           </div>
           <div className="continuation fldc-jc">
             <button className='df-ac'><div className="fab fa-facebook-square"></div><div>Facebook</div> </button>
-            <button className='df-ac'><div className="fab fa-google"></div> <div>Google</div> </button>
-            <button className='df-ac'><div className="fab fa-twitter-square"></div><div>Twitter</div></button>
+            <button className='df-ac gmail'><div className="fab fa-google"></div> <div>Google</div> </button>
+            <button className='df-ac twitter'><div className="fab fa-twitter-square"></div><div>Twitter</div></button>
           </div>
         </div>
 

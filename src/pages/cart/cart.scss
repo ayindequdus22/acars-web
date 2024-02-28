@@ -20,6 +20,7 @@
         color: white;
         border: 1px solid transparent;
       }
+
       a {
         margin: 1rem 0;
         border: 1px solid rgb(52, 152, 219);
@@ -36,7 +37,7 @@
       }
     }
 
-    .cartHeader > a:hover {
+    .cartHeader>a:hover {
       background-color: rgb(52, 152, 219);
       color: white !important;
     }
@@ -101,11 +102,13 @@
             color: rgba(255, 255, 255);
           }
         }
+
         &:nth-child(4) {
           p {
             color: rgba(255, 255, 255);
           }
         }
+
         p {
           color: rgba(255, 255, 255, 0.767);
           font-size: 2rem;
@@ -114,7 +117,7 @@
 
       .deliveryCharges {
         display: flex;
-        justify-content: end !important;
+        justify-content: flex-end !important;
         width: 100%;
         padding: 1rem;
 
@@ -138,6 +141,7 @@
       .cartItem:last-child {
         border: none;
       }
+
       .cartItem {
         background-color: rgba(31, 41, 55);
         padding: 1rem;
@@ -218,17 +222,21 @@
     }
   }
 }
+
 @media (max-width: 670px) {
   .cartContainer {
     padding: 10rem 0;
+
     .necessities {
       padding: 0 2%;
     }
+
     .cartCont {
       .cartItemContainer {
         gap: 2rem;
         box-shadow: none;
         justify-content: center;
+
         .cartItem {
           padding: 1rem 1rem 1.5rem;
           width: auto;
@@ -239,18 +247,22 @@
           text-align: center;
           box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.582);
           flex-direction: column;
+
           .image {
             img {
               height: 27rem;
               width: 30rem;
             }
           }
+
           .details {
             padding: 0.5rem 0;
           }
+
           .changes {
             padding: 0.5rem 0;
           }
+
           .remove {
             button {
               font-size: 2rem;
@@ -259,6 +271,7 @@
         }
       }
     }
+
     .checkOut {
       position: fixed !important;
       bottom: 0 !important;
@@ -269,6 +282,7 @@
       align-items: center !important;
       justify-content: center !important;
       height: 6rem !important;
+
       .checkOutBtnContainer {
         button {
           width: 90vw !important;
@@ -279,6 +293,7 @@
           display: block !important;
         }
       }
+
       .orderHeader,
       .subtotal,
       .deliveryCharges {
@@ -287,6 +302,7 @@
     }
   }
 }
+
 @media (min-width: 670px) {
   .checkOut {
     position: sticky;

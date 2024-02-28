@@ -62,7 +62,7 @@ const Navbar = () => {
             <div className="fa fa-shopping-cart"></div>
             <div>{totalQTY}</div>
           </Link>
-          <Link to="/sign-up" title="sign-up" className="fa fa-user"></Link>
+          <Link to="/register" title="sign-up" className="fa fa-user"></Link>
           <div
             className={active ? "fa fa-times" : "fa fa-bars"}
             onClick={handleClick}

@@ -1,11 +1,12 @@
-a.active{
+a.active {
   color: var(--primary-color) !important;
 }
+
 @media (min-width: 690px) {
 
-  a.active{
-font-weight:bold; 
-transition: all 1s ease;
-text-shadow: 0 0 1px rgba(255, 255, 255, 0.842);
-}
+  a.active {
+    font-weight: bold;
+    transition: all 1s ease;
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.842);
+  }
 }
