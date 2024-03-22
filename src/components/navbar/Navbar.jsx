@@ -1,16 +1,11 @@
 // Navbar.jsx4
 import React, { useState, useEffect } from "react";
 import "./navbar.scss";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
   cartProducts,
-  decreaseItemQty,
-  selectTotalAmount,
   setGetTotals,
-  increaseItemQty,
-  removeItem,
-  setClearCartItems,
   selectTotalQTY,
 } from "../../store/cartSlice";
 
@@ -31,6 +26,8 @@ const Navbar = () => {
   };
   const dispatch = useDispatch();
   const cartItems = useSelector(cartProducts);
+  const likedItems = useSelector((state)=> state.likedSlice.likedItems
+  )
   useEffect(() => {
     dispatch(setGetTotals());
   }, [cartItems, dispatch]);
@@ -45,6 +42,7 @@ const Navbar = () => {
 
   return (
     <>
+    <Outlet/>
       <div
         className={`${active ? "nav df-jsb active" : "nav df-jsb"}
          `}
@@ -61,6 +59,11 @@ const Navbar = () => {
           <Link to="/cart" className="cartIcon">
             <div className="fa fa-shopping-cart"></div>
             <div>{totalQTY}</div>
+          </Link>
+          <Link to="/liked" className="likedIcon">
+            <div className="fa fa-heart"></div>
+            <div>{likedItems.length}</div>
+          <div></div>
           </Link>
           <Link to="/register" title="sign-up" className="fa fa-user"></Link>
           <div

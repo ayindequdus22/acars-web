@@ -2,8 +2,10 @@ import React from "react";
 import "./overview.scss";
 import product from "./data";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addToLiked } from "../../store/likeSlice";
 const Overview = () => {
-
+const dispatch= useDispatch()
 return (
   <div className="overviewProductsContainer fldc">
       <h3>Overview</h3>
@@ -13,6 +15,7 @@ return (
           return (
             <>
               <div className="overView" key={id}>
+                  <div className="fa fa-heart" onClick={()=>{dispatch(addToLiked(product))}}></div>
                 <div className="image">
                   <picture>
                     <img src={product.image} alt=""/>

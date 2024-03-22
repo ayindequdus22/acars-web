@@ -2,7 +2,7 @@
   padding: 6rem 4% 2rem;
 
   .overviewProducts {
-    gap:1rem 2rem;
+    gap: 1rem 2rem;
 
     .overView {
       margin-top: 1.5rem;
@@ -10,6 +10,39 @@
       padding: 1rem;
       background-color: rgba(31, 41, 55, 0.2) !important;
       border-radius: 0.5rem;
+      position: relative;
+      overflow-x: hidden;
+
+      &:hover {
+        .fa {
+
+          right: 1rem;
+        }
+
+      }
+
+      .fa.active,
+      .fa:hover {
+        background-color: var(--primary-color);
+        transition: all .5s ease;
+      }
+
+      .fa {
+        position: absolute;
+        right: -4rem;
+        transition: all .5s ease-in-out;
+        top: 2rem;
+        background-color: rgba(0, 0, 0, 0.705);
+        cursor: pointer;
+        font-size: 2rem;
+        border-radius: 50%;
+        width: 4rem;
+        line-height: 4rem;
+        text-align: center;
+
+      }
+
+
       .image picture img {
         height: 25rem;
         width: 27rem;
@@ -19,11 +52,10 @@
         padding: 2rem 0 0rem;
 
         a {
-         height: 4rem;
+          height: 4rem;
           display: inline-flex;
           align-items: center;
           padding: 0 1.5rem;
-          border-radius: 5px;
           cursor: pointer;
         }
 
@@ -40,6 +72,7 @@
   display: block;
   color: white;
   border: none;
+  border-radius: .6rem;
   border: 0.1rem solid rgba(205, 170, 124, 0.2);
   background: linear-gradient(45deg, rgb(50, 108, 163), rgb(9, 43, 78));
   cursor: pointer;
