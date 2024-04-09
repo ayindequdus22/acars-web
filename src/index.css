@@ -1,12 +1,14 @@
 :root {
+  /* --primary-color: rgb(52, 152, 219);
+  --bg-color: rgba(31, 41, 55); */
   --primary-color: rgb(52, 152, 219);
-  --bg-color: rgba(31, 41, 55);
+  --bg-color: rgb(15, 14, 14);
 }
 
 body {
   font-family: sans-serif, Poppins;
   color: white;
-  background-color: rgba(31, 41, 55);
+  background-color: var(--bg-color);
 }
 
 a {

@@ -23,6 +23,9 @@ function App() {
             <Routes>
               <Route element={<Navbar />}>
                 <Route path='/' element={<Home />} />
+                <Route path='*' element={<>
+                
+                </>}/>
                 <Route path='/brands' element={<Brands />} />
                 <Route path='/cart' element={<Cart />} />
                 <Route path='/register' element={<Register />} />
