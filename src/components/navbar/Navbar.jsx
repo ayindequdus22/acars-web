@@ -42,7 +42,7 @@ const Navbar = () => {
 
   return (
     <>
-    <Outlet/>
+   
       <div
         className={`${active ? "nav df-jsb active" : "nav df-jsb"}
          `}
@@ -71,7 +71,7 @@ const Navbar = () => {
             onClick={handleClick}
           ></div>
         </div>
-      </div>
+      </div> <Outlet/>
     </>
   );
 };
