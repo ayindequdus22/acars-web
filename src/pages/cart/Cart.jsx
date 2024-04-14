@@ -28,7 +28,11 @@ const Cart = () => {
   return (
     <>
       {cartItems.length === 0 ? (
-        "p"
+        <>
+        <div className="emptyCart dfAc">
+          <h1>Cart is empty</h1>
+        </div>
+        </>
       ) : (
         <>
           <div className="cartContainer">

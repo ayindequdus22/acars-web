@@ -1,6 +1,10 @@
-.cartContainer {
-  padding: 10rem 2%;
+.emptyCart{
+  height: 100vh;
+}
 
+.cartContainer {
+  // padding: 10rem 2%;
+padding: 0;margin: 0;
   .necessities {
     .cartHeader {
       button:hover {
@@ -68,7 +72,7 @@
       flex-grow: 1;
       height: 70%;
       flex-shrink: 1;
-          background-color: rgba(31, 41, 55, 0.2) !important;
+          background-color:  rgba(31, 41, 55, .9) !important;
      
 
       box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.582);
@@ -144,7 +148,7 @@
       }
 
       .cartItem {
-        background-color: rgba(31, 41, 55, 0.2) !important;
+        background-color: rgba(31, 41, 55, .9) !important;
         padding: 1rem;
         width: 100%;
         justify-content: space-between;
@@ -185,9 +189,7 @@
             border: 1px solid var(--primary-color);
           }
 
-          input:focus {
-            // border:transparent;background: #000;
-          }
+      
 
           input {
             background-color: transparent;
@@ -226,7 +228,7 @@
 
 @media (max-width: 670px) {
   .cartContainer {
-    padding: 10rem 0;
+    // padding: 10rem 0;
 
     .necessities {
       padding: 0 2%;
@@ -277,14 +279,14 @@
       position: fixed !important;
       bottom: 0 !important;
       width: 100%;
-      padding: 0;
+      padding: 0;margin: 0;
       z-index: 100;
       display: flex;
       align-items: center !important;
       justify-content: center !important;
       height: 6rem !important;
 
-      .checkOutBtnContainer {
+      .checkOutBtnContainer {width: inherit;
         button {
           width: 90vw !important;
           height: 5rem;
@@ -305,9 +307,12 @@
 }
 
 @media (min-width: 670px) {
+  .cartContainer {
+    padding: 8rem 2% 1rem;
+  }
   .checkOut {
     position: sticky;
-    top: 10%;
+    top: 15%;
 
     .checkOutBtnContainer {
       display: flex;

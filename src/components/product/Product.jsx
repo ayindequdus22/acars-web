@@ -1,11 +1,11 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addToCart } from '../store/cartSlice';
-import { addToLiked, removeFromLiked } from '../store/likeSlice';
+import { addToCart } from '../../store/cartSlice';
+import { addToLiked, removeFromLiked } from '../../store/likeSlice';
 import './products.scss';
 import { product } from './data';
 
-export const Product = () => {
+const Product = () => {
   const dispatch = useDispatch();
   const likedItems = useSelector((state) => state.likedSlice.likedItems);
   

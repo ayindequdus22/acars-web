@@ -8,41 +8,49 @@ import {
   setGetTotals,
   selectTotalQTY,
 } from "../../store/cartSlice";
+import { removeFromLiked } from '../../store/likeSlice';
 
 const Navbar = () => {
   const [active, setActive] = useState(false);
-
-  const handleClick = () => {
-    setActive(!active);
-    console.log(active);
-  };
-
+  const [activeLike, setActiveLike] = useState(false);
   const onNavScroll = () => {
+
     if (window.scrollY > 50) {
+      console.log("first")
       document.querySelector(".nav").classList.add("activeTwo");
     } else {
       document.querySelector(".nav").classList.remove("activeTwo");
     }
   };
+  window.addEventListener("scroll", () => {
+    setActive(false);
+  })
+  useEffect(() => {
+    window.addEventListener("scroll", () => onNavScroll);
+    return () => {
+      window.removeEventListener("scroll", onNavScroll);
+    };
+  }, []);
+
+  const handleClick = () => {
+    setActive(!active);
+  };
+
+
   const dispatch = useDispatch();
   const cartItems = useSelector(cartProducts);
-  const likedItems = useSelector((state)=> state.likedSlice.likedItems
+  const likedItems = useSelector((state) => state.likedSlice.likedItems
   )
   useEffect(() => {
     dispatch(setGetTotals());
   }, [cartItems, dispatch]);
 
   const totalQTY = useSelector(selectTotalQTY);
-  useEffect(() => {
-    window.addEventListener("scroll", onNavScroll);
-    return () => {
-      window.removeEventListener("scroll", onNavScroll);
-    };
-  }, []);
+
 
   return (
     <>
-   
+
       <div
         className={`${active ? "nav df-jsb active" : "nav df-jsb"}
          `}
@@ -60,18 +68,42 @@ const Navbar = () => {
             <div className="fa fa-shopping-cart"></div>
             <div>{totalQTY}</div>
           </Link>
-          <Link to="/liked" className="likedIcon">
+          <div onClick={() => setActiveLike(true)} className="likedIcon">
             <div className="fa fa-heart"></div>
             <div>{likedItems.length}</div>
-          <div></div>
-          </Link>
+            <div></div>
+          </div>
           <Link to="/register" title="sign-up" className="fa fa-user"></Link>
           <div
             className={active ? "fa fa-times" : "fa fa-bars"}
             onClick={handleClick}
           ></div>
         </div>
-      </div> <Outlet/>
+        <div className={activeLike ? "likedItemsSection active" : "likedItemsSection"} >
+          <div className="fatty">
+            <div className="fa fa-times" onClick={() => setActiveLike(false)}></div>
+          </div>
+
+          <div className="likedItemsContainer ">
+          {likedItems.map((likedItem, id) => (
+            <div className="likedItems df-jsb-ac" key={id}>
+              <div className="image">
+                <picture>
+                  <img src={likedItem.image} alt="" />
+                </picture>
+              </div>
+              <p>{likedItem.name}</p>
+              <button onClick={()=>dispatch(removeFromLiked(likedItem))}>Remove</button>
+            </div>
+          ))}
+
+        </div>
+
+
+      </div>
+    </div >
+
+      <Outlet />
     </>
   );
 };

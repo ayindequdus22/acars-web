@@ -13,24 +13,32 @@
   right: 0;
   left: 0;
   background-color: rgba(31, 41, 55, 0.3);
-  backdrop-filter: blur(40px);
+  backdrop-filter: blur(3rem);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
   .links {
     gap: 2rem;
+
     a:hover {
-      color:#3498db;transition: all 1s ease;
+      color: #3498db;
+      transition: all 1s ease;
     }
   }
+
   .icons {
     display: flex;
     gap: 2.5rem;
+
     .fa {
       cursor: pointer;
       font-size: 2.5rem;
     }
-    .cartIcon,.likedIcon {
-      position: relative;cursor: pointer;
+
+    .cartIcon,
+    .likedIcon {
+      position: relative;
+      cursor: pointer;
+
       div:nth-child(2) {
         z-index: 1;
         // background-color: #3498db;
@@ -46,48 +54,142 @@
         right: -1rem;
       }
     }
+
     .fa-bars,
     .fa-times {
       display: none;
     }
   }
+
+  .likedItemsSection {
+ 
+    position: fixed !important;
+    background-color: rgba(31, 41, 55, 0.925);
+    backdrop-filter: blur(3rem);
+    height: 100vh;
+    width: 100%;
+    left: 200rem;
+    z-index: 100;
+    top: 0;
+    display: flex;
+    justify-content: flex-end;
+  transition: all 1s ease;
+
+&.active{
+  left: 0;
 }
+.fatty{position: fixed;
+      top: 0;
+      left: 0;height: inherit;
+    .fa-times {
+position: sticky;
+      padding: 1rem;top: 0;
+      cursor: pointer;
+      font-size: 3rem;
+    }
+  }
+    .likedItemsContainer {
+      width: 40rem;  
+        overflow-y: auto;
+      // padding-top: 13rem;
+      display: flex;flex-direction: column;justify-content: start;
+
+      background-color: rgb(31, 41, 55);
+
+      .likedItems {
+        padding: 1rem 4%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.185);
+        background-color: rgb(31, 41, 55);
+gap: 1rem;
+        .image picture img {
+          height: 8rem;
+          width: 10rem;
+        }
+
+        p {text-align: center; 
+          font-size: 2rem;
+        }
+
+        button {
+          font-size: 1.4rem;
+          background-color: red;
+          height: 3rem;
+          cursor: pointer;
+          transition: all 0.5s ease;
+          padding: 0 1rem;
+          color: white;
+          border: 1px solid transparent;
+        }
+
+        button:hover {
+          color: red;
+
+          background-color: transparent;
+          border: 1px solid red;
+        }
+      }
+    }
+
+  }
+}
+
 .nav.activeTwo {
   height: 8vh;
   padding: 2rem 6% !important;
   transition: all 2s ease;
 }
+
 @media (max-width: 800px) {
-  
+
   .nav {
     .links {
-      // display: none !important;
       position: absolute;
       top: 100%;
       align-items: center;
       display: flex;
       transition: all 1s ease;
       right: -40rem;
-      // padding-top: 5rem;
       backdrop-filter: blur(40px) !important;
-      background-color: rgba(31, 41, 55, 0.8) !important;
+      background-color: rgba(31, 41, 55, 0.95) !important;
       box-shadow: -1px 5px 4px rgba(255, 255, 255, 0.842);
       width: 50%;
       height: 100vh;
       gap: 4rem;
       flex-direction: column;
       justify-content: center;
+
       a {
         font-size: 3rem;
       }
     }
+
     .fa-bars,
     .fa-times {
       display: block !important;
     }
   }
+
   .nav.active .links {
     right: 0;
   }
 }
-// box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+@media (max-width: 450px) {
+  .nav .likedItemsSection .likedItemsContainer {
+padding-top: 0;
+width: 100%;
+    .likedItems{
+p{
+  font-size: 1.7rem;
+}
+button {
+  font-size: 1.2rem;
+  background-color: red;
+  height: 3rem;
+  padding: 0 .8rem;
+}
+    .image picture img {
+
+    }}
+
+  }
+}
