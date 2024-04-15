@@ -63,7 +63,7 @@ const Cart = () => {
                   ).toFixed(2);
 
                   return (
-                    <>
+            
                       <div className="cartItem" key={cartItem.id}>
                         <div className="image">
                           <img src={cartItem.image} alt="" />
@@ -109,7 +109,7 @@ const Cart = () => {
                           </button>
                         </div>
                       </div>
-                    </>
+                  
                   );
                 })}
               </div>

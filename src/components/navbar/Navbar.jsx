@@ -1,6 +1,7 @@
 // Navbar.jsx4
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import "./navbar.scss";
+import { ShowLikedContext } from '../../App'
 import { Link, NavLink, Outlet } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -11,6 +12,8 @@ import {
 import { removeFromLiked } from '../../store/likeSlice';
 
 const Navbar = () => {
+  const showme =  useContext(ShowLikedContext);
+  // console.log(showme.show)
   const [active, setActive] = useState(false);
   const [activeLike, setActiveLike] = useState(false);
   const onNavScroll = () => {
@@ -59,7 +62,7 @@ const Navbar = () => {
         <div className="links df">
           <NavLink to="/">Home</NavLink>
           <NavLink to="/brands">Brands</NavLink>
-          <NavLink to="/about">About Us</NavLink>
+          <NavLink to="/coming-soon">Coming Soon</NavLink>
           <NavLink to="/contact-us">Contact Us</NavLink>
         </div>
         <div className="icons">
@@ -68,7 +71,7 @@ const Navbar = () => {
             <div className="fa fa-shopping-cart"></div>
             <div>{totalQTY}</div>
           </Link>
-          <div onClick={() => setActiveLike(true)} className="likedIcon">
+          <div onClick={() => showme.setShow(true)} className="likedIcon">
             <div className="fa fa-heart"></div>
             <div>{likedItems.length}</div>
             <div></div>
@@ -79,9 +82,9 @@ const Navbar = () => {
             onClick={handleClick}
           ></div>
         </div>
-        <div className={activeLike ? "likedItemsSection active" : "likedItemsSection"} >
+        <div className={showme.show ? "likedItemsSection active" : "likedItemsSection"} >
           <div className="fatty">
-            <div className="fa fa-times" onClick={() => setActiveLike(false)}></div>
+            <div className="fa fa-times" onClick={() => showme.setShow(false)}></div>
           </div>
 
           <div className="likedItemsContainer ">

@@ -1,21 +1,19 @@
-import React from "react";
+import React,{useContext} from "react";
 import "./overview.scss";
 import product from "./data";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { addToLiked } from "../../store/likeSlice";
+import { ShowLikedContext } from '../../App'
+
 const Overview = () => {
-const dispatch= useDispatch()
+  const showme =  useContext(ShowLikedContext);
 return (
   <div className="overviewProductsContainer fldc">
       <h3>Overview</h3>
       <div className="overviewProducts fldcW">
-        {product.slice(0,4).map((product, id) => {
-       
-          return (
-            <>
+        {product.slice(0,4).map((product, id) =>  (
+          
               <div className="overView" key={id}>
-                  <div className="fa fa-heart" onClick={()=>{dispatch(addToLiked(product))}}></div>
+                  <div className="fa fa-heart" onClick={() => showme.setShow(true)}></div>
                 <div className="image">
                   <picture>
                     <img src={product.image} alt=""/>
@@ -31,9 +29,9 @@ return (
                   </Link>
                 </div>
               </div>
-            </>
-          );
-        })}
+            
+          )
+        )}
       </div>
 
     </div>

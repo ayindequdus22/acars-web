@@ -8,3 +8,4 @@ import likeReducer from "./likeSlice";
   },
 });
 export default store;
+

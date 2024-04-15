@@ -1,0 +1,16 @@
+.overviewProductsContainer .overviewProducts .slideIn{
+    position: absolute;  
+    height: 25rem;
+    width: 27rem;       
+    background: rgba(0, 0, 0, 0.5);
+    .fab{
+        transition: all .5s ease-in-out;
+        // background-color: rgba(0, 0, 0, 0.705);
+        cursor: pointer;
+        font-size: 2rem;
+        border-radius: 50%;
+        width: 4rem;
+        height: 4rem;
+        text-align: center;
+    }
+}
