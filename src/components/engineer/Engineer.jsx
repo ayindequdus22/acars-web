@@ -1,10 +1,9 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import img from "../../assets/eng (1).jpg"
 import img1 from "../../assets/eng (2).jpg"
 import img2 from "../../assets/eng.jpg"
 import "./engineer.scss"
 export const Engineer = () => {
-
   const data = [
     { text: "Toyota Melly ", image: img, prof: "Rewire" },
     { text: "Marc ZuckerBerg", image: img1, prof: "Exhaust Mechanic" },
@@ -17,12 +16,13 @@ export const Engineer = () => {
       <div className="overviewProducts fldcW">
         {data.map((eng, id) => (
           <div className="overView" key={id}>
+           
+            <div className="image"> 
             <div className="slideIn dfAc">
-            <div class="fab fa-twitter"></div>      
+            <div className="fab fa-twitter"></div>      
                     <div className="fab fa-instagram"></div>
               <div className="fab fa-facebook"></div>
             </div>
-            <div className="image">
               <picture>
                 <img src={eng.image} loading='lazy' alt="" />
               </picture>

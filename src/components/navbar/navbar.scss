@@ -62,7 +62,7 @@
   }
 
   .likedItemsSection {
- 
+
     position: fixed !important;
     background-color: rgba(31, 41, 55, 0.925);
     backdrop-filter: blur(3rem);
@@ -73,26 +73,36 @@
     top: 0;
     display: flex;
     justify-content: flex-end;
-  transition: all 1s ease;
-
-&.active{
-  left: 0;
+    transition: all 1s ease;
+.emptyLikeContainer{
+  height: 100vh;
+  width: 100%;
 }
-.fatty{position: fixed;
-      top: 0;
-      left: 0;height: inherit;
-    .fa-times {
-position: sticky;
-      padding: 1rem;top: 0;
-      cursor: pointer;
-      font-size: 3rem;
+    &.active {
+      left: 0;
     }
-  }
+
+    .fatty {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: inherit;
+
+      .fa-times {
+        position: sticky;
+        padding: 1rem;
+        top: 0;
+        cursor: pointer;
+        font-size: 3rem;
+      }
+    } 
+
     .likedItemsContainer {
-      width: 40rem;  
-        overflow-y: auto;
-      // padding-top: 13rem;
-      display: flex;flex-direction: column;justify-content: flex-start;
+      width: 40rem;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
 
       background-color: rgb(31, 41, 55);
 
@@ -100,13 +110,15 @@ position: sticky;
         padding: 1rem 4%;
         border-bottom: 1px solid rgba(255, 255, 255, 0.185);
         background-color: rgb(31, 41, 55);
-gap: 1rem;
+        gap: 1rem;
+
         .image picture img {
           height: 8rem;
           width: 10rem;
         }
 
-        p {text-align: center; 
+        p {
+          text-align: center;
           font-size: 2rem;
         }
 
@@ -173,23 +185,32 @@ gap: 1rem;
     right: 0;
   }
 }
+
 @media (max-width: 450px) {
-  .nav .likedItemsSection .likedItemsContainer {
-padding-top: 0;
-width: 100%;
-    .likedItems{
-p{
-  font-size: 1.7rem;
-}
-button {
-  font-size: 1.2rem;
-  background-color: red;
-  height: 3rem;
-  padding: 0 .8rem;
-}
-    .image picture img {
+  .nav .likedItemsSection{
+    .emptyLikeContainer{
+      h3{
+        font-size: 3.5rem !important ;
+      }
+    }
+    .likedItemsContainer {
+    padding-top: 0;
+    width: 100%;
 
-    }}
+    .likedItems {
+      p {
+        font-size: 1.7rem;
+      }
 
-  }
+      button {
+        font-size: 1.2rem;
+        background-color: red;
+        height: 3rem;
+        padding: 0 .8rem;
+      }
+
+   
+    }
+
+  }}
 }

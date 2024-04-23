@@ -2,10 +2,11 @@
   height: 100vh;
 
   .loginContainer {
-    height: 70vh;
     background-color: rgba(31, 41, 55);
     padding: 2rem 1%;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.582);
+    border-radius: 1.5rem;
+    width: 49rem;
 
     .usPcP {
       gap: 1rem;
@@ -34,8 +35,7 @@
       justify-content: space-between !important;
       display: flex;
       width: 100%;
-      padding: 1rem 0;
-
+      padding: 1rem 2%;
       a:nth-child(1) {
         color: var(--primary-color) !important;
       }
@@ -82,5 +82,20 @@
 
       }
     }
+  }
+}
+
+
+@media (max-width:400px) {
+  .loginForm .loginContainer {
+    width: 38rem !important;
+
+    input ,.btnContainer .btn,.continuation button{
+      width: 34rem !important;
+
+    }
+
+  
+
   }
 }

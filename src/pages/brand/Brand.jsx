@@ -6,7 +6,7 @@ const Brands = () => {
   console.log(id)
   return (
     <>
-\
+
 <Product proper={id}/>    </>
   )
 }

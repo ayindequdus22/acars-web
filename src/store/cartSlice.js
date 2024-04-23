@@ -25,17 +25,7 @@ const CartSlice = createSlice({
         state.cartItems.push(temp);
       }
       localStorage.setItem("cart", JSON.stringify(state.cartItems));
-      toast.success(`${action.payload.name} has been added`, {
-        position: "bottom-left",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-        // transition: 'bounce',
-        });
+      toast.success(`${action.payload.name} has been added`);
     },
     removeItem: (state, action) => {
       const removeItem = state.cartItems.filter(

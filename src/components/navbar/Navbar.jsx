@@ -1,8 +1,8 @@
 // Navbar.jsx4
-import React, { useState, useEffect,useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./navbar.scss";
 import { ShowLikedContext } from '../../App'
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
   cartProducts,
@@ -12,10 +12,9 @@ import {
 import { removeFromLiked } from '../../store/likeSlice';
 
 const Navbar = () => {
-  const showme =  useContext(ShowLikedContext);
+  const showme = useContext(ShowLikedContext);
   // console.log(showme.show)
   const [active, setActive] = useState(false);
-  const [activeLike, setActiveLike] = useState(false);
   const onNavScroll = () => {
 
     if (window.scrollY > 50) {
@@ -58,7 +57,7 @@ const Navbar = () => {
         className={`${active ? "nav df-jsb active" : "nav df-jsb"}
          `}
       >
-        <p>Anteqs</p>
+        <Link>A-Cars</Link>
         <div className="links df">
           <NavLink to="/">Home</NavLink>
           <NavLink to="/brands">Brands</NavLink>
@@ -86,27 +85,31 @@ const Navbar = () => {
           <div className="fatty">
             <div className="fa fa-times" onClick={() => showme.setShow(false)}></div>
           </div>
+          {likedItems.length >= 1 ? (
+            <div className="likedItemsContainer ">
+              {likedItems.map((likedItem, id) => (
+                <div className="likedItems df-jsb-ac" key={id}>
+                  <div className="image">
+                    <picture>
+                      <img src={likedItem.image} alt="" />
+                    </picture>
+                  </div>
+                  <p>{likedItem.name}</p>
+                  <button onClick={() => dispatch(removeFromLiked(likedItem))}>Remove</button>
+                </div>
+              ))}
 
-          <div className="likedItemsContainer ">
-          {likedItems.map((likedItem, id) => (
-            <div className="likedItems df-jsb-ac" key={id}>
-              <div className="image">
-                <picture>
-                  <img src={likedItem.image} alt="" />
-                </picture>
-              </div>
-              <p>{likedItem.name}</p>
-              <button onClick={()=>dispatch(removeFromLiked(likedItem))}>Remove</button>
-            </div>
-          ))}
+            </div>)
+            : (
+              <>
+                <div className="emptyLikeContainer dfAc" style={{ padding: "0 4%", textAlign: "center" }}>
+                  <h3>Add Products You Like To Favorites <div className="fa fa-heart" style={{ color: "var(--primary-color" }}></div></h3>
+                </div>
+              </>
+            )}
 
         </div>
-
-
-      </div>
-    </div >
-
-      <Outlet />
+      </div >
     </>
   );
 };

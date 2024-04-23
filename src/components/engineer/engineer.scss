@@ -1,16 +1,27 @@
-.overviewProductsContainer .overviewProducts .slideIn{
-    position: absolute;  
-    height: 25rem;
+.overviewProductsContainer .overviewProducts{ 
+  
+    .overView:hover .image .slideIn{
+bottom: 0;  }
+    .image {
+        position: relative;  overflow: hidden;  
+        .slideIn{
+            transition: all 1s ease;
+    position: absolute;
+    height: 25.5rem;
+    bottom:-40rem;
     width: 27rem;       
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.5);gap:2rem;
     .fab{
         transition: all .5s ease-in-out;
         // background-color: rgba(0, 0, 0, 0.705);
         cursor: pointer;
-        font-size: 2rem;
+        font-size: 3rem;
         border-radius: 50%;
         width: 4rem;
         height: 4rem;
         text-align: center;
+    &:hover{
+        color: var(--primary-color);
     }
-}
+    }
+}}}

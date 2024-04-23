@@ -1,7 +1,7 @@
 :root {
   /* --primary-color: rgb(52, 152, 219);*/
-  --bg-color: rgba(31, 41, 55); 
-  --primary-color: rgb(52, 152, 219);
+  --bg-color: rgba(31, 41, 55);
+  --primary-color: rgba(52, 152, 219);
   /* --bg-color: rgb(15, 14, 14); */
 }
 
@@ -11,7 +11,9 @@ body {
   overflow-x: hidden;
   background-color: var(--bg-color);
 }
+
 a {
+
   color: white !important;
 }
 
@@ -42,9 +44,86 @@ a {
     background-color: rgb(16, 107, 172) !important;
   }
 }
-::-webkit-scrollbar-track{
+
+::-webkit-scrollbar-track {
   background-color: rgb(16, 107, 172) !important;
   color: rgb(16, 107, 172) !important;
   width: 1rem;
 
+}
+
+
+
+.footer {
+  margin-top: 2rem;
+  padding: 2rem 4% 0;
+  background-color: rgb(22, 29, 39) !important;
+
+  .share {
+    padding-top: 2rem;
+    text-align: center;
+
+    a {
+      font-size: 2rem;
+      height: 5rem;
+      width: 5rem;
+      line-height: 5rem;
+      border-radius: 50%;
+      color: #fff;
+      margin: .3rem;
+
+      &:hover {
+        background: var(--pink);
+        transition: all .5s ease;
+        transform: rotate(360deg);
+      }
+    }
+  }
+
+  .box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    gap: 1.5rem;
+
+
+
+    .box {
+      h3 {
+        font-size: 2.2rem;
+        text-transform: capitalize;
+        color: var(--primary-color);
+        padding: 1rem 0;
+      }
+
+      p {
+        font-size: 1.5rem;
+        color: #666;
+        padding: 1rem 0;
+        line-height: 2;
+      }
+
+      a {
+        display: block;
+        font-size: 1.4rem;
+        color: #666;
+        text-transform: capitalize;
+        padding: 1rem 0;
+
+        i {
+          padding-right: .5rem;
+          color: var(--primary-color);
+        }
+
+        &:hover {
+          color: var(--primary-color) !important;
+        }
+
+        &:hover i {
+          padding-right: 2rem;
+          transition: all .5s ease;
+        }
+      }
+    }
+
+  }
 }

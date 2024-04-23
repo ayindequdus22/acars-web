@@ -1,9 +1,11 @@
 .registerFormContainer {
   //   background-color: rgba(31, 41, 55);
   height: 100vh;
-
+// padding: 0 4%;
   .registerForm {
-    height: 75vh;
+    // height: 75vh;
+    border-radius: 1.5rem;
+    width: 49rem;
     gap: 1rem;
     background-color: rgba(31, 41, 55);
     padding: 2rem 1%;
@@ -35,7 +37,7 @@
       button {
         border: none;
         border-radius: 0.5rem;
-        height: 4rem;
+        height: 4rem;cursor: pointer;
         color: white;
         width: 45rem;
 
@@ -47,7 +49,7 @@
           font-size: 2rem;
         }
 
-        &:first-child {
+        &:nth-child(2) {
           background: blue;
 
           div:nth-child(1) {
@@ -64,5 +66,45 @@
       }
     }
 
+  }
+}
+
+// @media (max-width:600px) {
+//   .registerFormContainer .registerForm {
+//     width: 33rem;
+// // box-shadow: none;
+//     input {
+//       width: 30rem;
+
+//     }
+
+//     .btnContainer .btn {
+//       width: 30rem;
+//     }
+
+//     .continuation button {
+//       width: 30rem;
+
+//     }
+//   }
+// }
+
+@media (max-width:480px) {
+  .registerFormContainer .registerForm {
+    width: 80vw;
+
+    input {
+      width: 75vw;
+
+    }
+
+    .btnContainer .btn {
+      width: 75vw;
+    }
+
+    .continuation button {
+      width: 75vw;
+
+    }
   }
 }

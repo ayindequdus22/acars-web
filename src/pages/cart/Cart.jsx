@@ -36,6 +36,9 @@ const Cart = () => {
       ) : (
         <>
           <div className="cartContainer">
+            <div className="total df-jsb">
+              <p>Total:</p><span>{totalAmount}</span>
+            </div>
             <div className="necessities">
               <p>
                 <Link to={"/"}>Home</Link>{" "}

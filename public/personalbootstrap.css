@@ -108,3 +108,24 @@ a {
     justify-content: center;
     align-items: center;
 }
+
+@media (max-width:996px) {
+    html {
+        font-size: 60%;
+    } 
+}
+@media (max-width:778px) {
+    html {
+        font-size: 52.5%;
+    } 
+}
+/* @media (max-width:550px) {
+    html {
+        font-size: 49.5%;
+    } 
+}
+@media (max-width:426px) {
+    html {
+        font-size: 43%;
+    } 
+}  */

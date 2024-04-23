@@ -1,10 +1,21 @@
-.emptyCart{
+.emptyCart {
   height: 100vh;
 }
 
 .cartContainer {
   // padding: 10rem 2%;
-padding: 0;margin: 0;
+  padding: 0;
+  margin: 0;
+
+  .total {
+    padding: 2rem 4%;
+
+    span {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+    }
+  }
+
   .necessities {
     .cartHeader {
       button:hover {
@@ -70,10 +81,10 @@ padding: 0;margin: 0;
     .checkOut {
       flex-basis: calc(30% - 2rem);
       flex-grow: 1;
-      height: 70%;
       flex-shrink: 1;
-          background-color:  rgba(31, 41, 55, .9) !important;
-     
+      height: 70%;
+      background-color: rgba(31, 41, 55, .9) !important;
+
 
       box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.582);
       justify-content: space-between;
@@ -127,7 +138,8 @@ padding: 0;margin: 0;
         padding: 1rem;
 
         p {
-          font-size: 2rem;
+          color: rgba(255, 255, 255, 0.767);
+          font-size: 1.6rem;
         }
       }
     }
@@ -189,7 +201,7 @@ padding: 0;margin: 0;
             border: 1px solid var(--primary-color);
           }
 
-      
+
 
           input {
             background-color: transparent;
@@ -228,10 +240,11 @@ padding: 0;margin: 0;
 
 @media (max-width: 670px) {
   .cartContainer {
-    // padding: 10rem 0;
+    // padding: 10rem 0;%;
+    padding-top: 10rem;
 
     .necessities {
-      padding: 0 2%;
+      display: none;
     }
 
     .cartCont {
@@ -239,6 +252,9 @@ padding: 0;margin: 0;
         gap: 2rem;
         box-shadow: none;
         justify-content: center;
+
+        padding-left: 4% !important;
+        padding-right: 4%;
 
         .cartItem {
           padding: 1rem 1rem 1.5rem;
@@ -279,14 +295,17 @@ padding: 0;margin: 0;
       position: fixed !important;
       bottom: 0 !important;
       width: 100%;
-      padding: 0;margin: 0;
+      padding: 0;
+      margin: 0;
       z-index: 100;
       display: flex;
       align-items: center !important;
       justify-content: center !important;
       height: 6rem !important;
 
-      .checkOutBtnContainer {width: inherit;
+      .checkOutBtnContainer {
+        width: inherit;
+
         button {
           width: 90vw !important;
           height: 5rem;
@@ -309,7 +328,12 @@ padding: 0;margin: 0;
 @media (min-width: 670px) {
   .cartContainer {
     padding: 8rem 2% 1rem;
+
+    .total {
+      display: none;
+    }
   }
+
   .checkOut {
     position: sticky;
     top: 15%;
