@@ -3,6 +3,8 @@ import { Link,useNavigate } from 'react-router-dom'
 import { PWD_REGEX, USER_REGEX } from '../../auth/regauth';
 import { Axios } from '../../utils/axios';
 import './login.scss'
+import { useDispatch } from 'react-redux';
+import { login as loginme } from '../../store/authSlice';
 const Login = () => {
   const userRef = useRef();
 
@@ -10,6 +12,7 @@ const Login = () => {
   const { user, pwd } = formObject;
   const [validName, setValidName] = useState(false);
   const [validPwd, setValidPWd] = useState(false);
+  const dispatch = useDispatch()
 const navigate = useNavigate();
   useEffect(() => {
     userRef.current.focus();
@@ -32,16 +35,9 @@ const navigate = useNavigate();
     const checkUserAgain = USER_REGEX.test(user);
     const checkPwdAgain = PWD_REGEX.test(pwd);
     if (!checkPwdAgain || !checkUserAgain) {
-      console.log({user,pwd})
-     try {
-      // "shola@gmail.com""12345678"
-      const response = await Axios.post("/auth/login", { email: user, password: pwd })
-console.log(response)
-      if(response.status ===200){
-navigate("/login")
-localStorage.setItem("user",user)
-      }
-    } catch (err) { console.log(err) }
+      // console.log({user,pwd})
+//  useDispatch(login)
+dispatch(loginme({user,pwd}))
     }
     else {
       alert("Input valid values")

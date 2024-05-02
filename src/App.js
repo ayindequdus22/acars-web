@@ -1,5 +1,5 @@
 import './App.css';
-import React, { createContext, useState } from 'react'
+import React, { createContext, useContext, useState } from 'react'
 import './fontawesome-free-6.5.1-web/fontawesome-free-6.5.1-web/css/all.css';
 import { Provider } from 'react-redux';
 import store from './store/store';
@@ -12,10 +12,10 @@ import Login from './pages/login/Login';
 import Brands from './pages/brand/Brand';
 import ComingSoon from './pages/soon/ComingSoon';
 import { QueryClient, QueryClientProvider, useQuery } from "@tanstack/react-query"
-export const ShowLikedContext = createContext();
+import ShowlikedcontextProvider from './utils/showlikedcontext';
 const queryClient = new QueryClient();
 function App() {
-  const [show, setShow] = useState(false);
+
   const router = createBrowserRouter([
     {
       path: "/", errorElement: "Nigga stfu",
@@ -63,9 +63,11 @@ function App() {
     <>
       <QueryClientProvider client={queryClient}>
         <Provider store={store}>
-          <ShowLikedContext.Provider value={{ show, setShow }}>
-            <RouterProvider router={router} />
-          </ShowLikedContext.Provider>
+          {/* <AuthContextProvider> */}
+            <ShowlikedcontextProvider>
+              <RouterProvider router={router} />
+              </ShowlikedcontextProvider>
+          {/* </AuthContextProvider> */}
         </Provider>
       </QueryClientProvider>
     </>
@@ -73,6 +75,7 @@ function App() {
   );
 }
 const Footer = () => {
+
   return (
     <section className="footer">
 

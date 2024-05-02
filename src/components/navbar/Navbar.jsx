@@ -1,7 +1,6 @@
 // Navbar.jsx4
 import React, { useState, useEffect, useContext } from "react";
 import "./navbar.scss";
-import { ShowLikedContext } from '../../App'
 import { Link, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -10,9 +9,10 @@ import {
   selectTotalQTY,
 } from "../../store/cartSlice";
 import { removeFromLiked } from '../../store/likeSlice';
+import { showLikedContext } from "../../utils/showlikedcontext";
 
 const Navbar = () => {
-  const showme = useContext(ShowLikedContext);
+  const showme = useContext(showLikedContext);
   // console.log(showme.show)
   const [active, setActive] = useState(false);
   const onNavScroll = () => {

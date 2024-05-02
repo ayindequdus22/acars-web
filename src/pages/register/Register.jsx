@@ -1,11 +1,20 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { PWD_REGEX, USER_REGEX } from '../../auth/regauth';
 import { Axios } from '../../utils/axios'; import './Register.scss'
+// import { AuthContext } from '../../utils/authContext';
 const Register = () => {
   const userRef = useRef();
-
-  const [formObject, setFormObject] = useState({ userName: "", email: "", pwd: "", matchpwd: "" });
+// const useMe = {
+//   name:"ole",
+//   api:"host"
+// }
+// const {currentUser,setCurrentUser} = useContext(AuthContext);
+// const text = ()=>{
+//   localStorage.setItem("user",JSON.stringify(useMe))
+// }
+// text()
+const [formObject, setFormObject] = useState({ userName: "", email: "", pwd: "", matchpwd: "" });
   const { userName, email, pwd, matchpwd } = formObject;
   const [validName, setValidName] = useState(false);
   const [validPwd, setValidPWd] = useState(false);
@@ -35,7 +44,7 @@ const Register = () => {
 console.log(response)
       if(response.status == 200){
 navigate("/")
-localStorage.setItem("user",userName)
+
       }
     } catch (err) { console.log(err) }
     }

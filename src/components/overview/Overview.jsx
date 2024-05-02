@@ -2,10 +2,11 @@ import React,{useContext} from "react";
 import "./overview.scss";
 import product from "./data";
 import { Link } from "react-router-dom";
-import { ShowLikedContext } from '../../App'
+import { showLikedContext } from "../../utils/showlikedcontext";
+
 
 const Overview = () => {
-  const showme =  useContext(ShowLikedContext);
+  const showme =  useContext(showLikedContext);
 return (
   <div className="overviewProductsContainer fldc">
       <h3>Overview</h3>
