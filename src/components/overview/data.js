@@ -12,10 +12,10 @@ const product = [
     { id: 1, name: "Rolls Royce", price: 20.99,image:image1 },
     { id: 2, name: "Chevrol B", price: 15.49,image:image2 },
     { id: 3, name: "Limo Zen", price: 30.50,image:image3 },
-    { id: 4, name: "Porsche", price: 90.03,image:image4 },
-    { id: 5, name: "Benz 2.0", price: 80.34,image:image5 },
-    { id: 6, name: "Benz 1.0", price: 40.45,image:image6 },
-    { id: 7, name: "Benz 3.0", price: 60.23,image:image7 },
+    // { id: 4, name: "Porsche", price: 90.03,image:image4 },
+    // { id: 5, name: "Benz 2.0", price: 80.34,image:image5 },
+    // { id: 6, name: "Benz 1.0", price: 40.45,image:image6 },
+    // { id: 7, name: "Benz 3.0", price: 60.23,image:image7 },
   ];
   
   export default product;

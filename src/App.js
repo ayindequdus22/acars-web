@@ -1,136 +1,98 @@
-import './App.css';
-import React, { createContext, useContext, useState } from 'react'
-import './fontawesome-free-6.5.1-web/fontawesome-free-6.5.1-web/css/all.css';
+import React, { createContext, useContext, useState } from 'react';
 import { Provider } from 'react-redux';
+import { createBrowserRouter, Outlet, RouterProvider, Navigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+
+// External Dependencies
+import './App.css';
+import './fontawesome-free-6.5.1-web/fontawesome-free-6.5.1-web/css/all.css';
+
+// Internal Dependencies
 import store from './store/store';
-import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
-import Home from './pages/home/Home'
-import Register from './pages/register/Register'
-import Cart from './pages/cart/Cart'
-import Navbar from './components/navbar/Navbar'
+import { Axios } from './utils/axios';
+import { Footer } from './components/footer/Footer';
+import Navbar from './components/navbar/Navbar';
+import ShowlikedcontextProvider from './utils/showlikedcontext';
+
+// Pages
+import Home from './pages/home/Home';
+import Register from './pages/register/Register';
+import Cart from './pages/cart/Cart';
 import Login from './pages/login/Login';
 import Brands from './pages/brand/Brand';
 import ComingSoon from './pages/soon/ComingSoon';
-import { QueryClient, QueryClientProvider, useQuery } from "@tanstack/react-query"
-import ShowlikedcontextProvider from './utils/showlikedcontext';
-const queryClient = new QueryClient();
+
 function App() {
+  const { data: user, isLoading, error, isError } = useQuery({
+    queryKey: ['authUser'],
+    queryFn: async () => {
+      try {
+        const response = await Axios.get('/auth/myprofile');
+        return response.data;
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error;
+      }
+    },
+    retry: false,
+  });
+
+  const AuthenticatedRoute = ({ children }) => {
+    return user ? children : <Navigate to="/login" />;
+  };
 
   const router = createBrowserRouter([
     {
-      path: "/", errorElement: "Nigga stfu",
-      element:
+      path: '/',
+      element: (
         <>
           <Navbar />
           <Outlet />
           <Footer />
-        </>,
+        </>
+      ),
       children: [
         {
-          path: "/", element: <Home />,
+          path: '/',
+          element: <AuthenticatedRoute><Home /></AuthenticatedRoute>,
         },
         {
-          path: "/coming-soon",
-          element: <ComingSoon />
+          path: '/coming-soon',
+          element: <AuthenticatedRoute><ComingSoon /></AuthenticatedRoute>,
         },
         {
-          path: "/brands",
-          element: <Brands />,
+          path: '/brands',
+          element: <AuthenticatedRoute><Brands /></AuthenticatedRoute>,
           children: [
             {
-              path: "/brands/:id",
+              path: '/brands/:id',
               element: <Brands />,
             },
-          ]
+          ],
         },
         {
-          path: "/cart",
-          element: <Cart />,
+          path: '/cart',
+          element: <AuthenticatedRoute><Cart /></AuthenticatedRoute>,
         },
-      ]
+      ],
     },
     {
-      path: "/login", element: <Login />,
+      path: '/login',
+      element: user ? <Navigate to="/" /> : <Login />,
     },
     {
-      path: "/register",
-      element: <Register />,
+      path: '/register',
+      element: user ? <Navigate to="/" /> : <Register />,
     },
-
   ]);
 
   return (
-    <>
-      <QueryClientProvider client={queryClient}>
-        <Provider store={store}>
-          {/* <AuthContextProvider> */}
-            <ShowlikedcontextProvider>
-              <RouterProvider router={router} />
-              </ShowlikedcontextProvider>
-          {/* </AuthContextProvider> */}
-        </Provider>
-      </QueryClientProvider>
-    </>
-
+    <Provider store={store}>
+      <ShowlikedcontextProvider>
+        <RouterProvider router={router} />
+      </ShowlikedcontextProvider>
+    </Provider>
   );
 }
-const Footer = () => {
 
-  return (
-    <section className="footer">
-
-      <div className="box-container">
-
-        <div className="box">
-          <h3>about us</h3>
-          <p>At A-Cars, we're dedicated to providing the highest quality cars and exceptional customer service. Explore our collection today.</p>
-        </div>
-
-        <div className="box">
-          <h3>category</h3>
-          <a href="#"> <i className="fas fa-arrow-right"></i> Cars </a>
-          <a href="#"> <i className="fas fa-arrow-right"></i> Jeeps </a>
-          <a href="#"> <i className="fas fa-arrow-right"></i> Trucks </a>
-          <a href="#"> <i className="fas fa-arrow-right"></i> Buses </a>
-          <a href="#"> <i className="fas fa-arrow-right"></i> new arrivals </a>
-        </div>
-
-        <div className="box">
-          <h3>quick links</h3>
-          <a href="#"> <i className="fas fa-arrow-right"></i> home </a>
-          <a href="#"> <i className="fas fa-arrow-right"></i> Brands </a>
-          <a href="#"> <i className="fas fa-arrow-right"></i> coming soon </a>
-          <a href="#"> <i className="fas fa-arrow-right"></i> contact </a>
-          <a href="#"> <i className="fas fa-arrow-right"></i> blogs </a>
-        </div>
-
-        <div className="box">
-          <h3>extra links</h3>
-          <a href="#"> <i className="fas fa-arrow-right"></i> my order </a>
-          <a href="#"> <i className="fas fa-arrow-right"></i> my account </a>
-          <a href="#"> <i className="fas fa-arrow-right"></i> my listing </a>
-          <a href="#"> <i className="fas fa-arrow-right"></i> sell now </a>
-          <a href="#"> <i className="fas fa-arrow-right"></i> new offers </a>
-        </div>
-
-      </div>
-
-      <div className="share">
-        <a href="#" className="fab fa-facebook-f"></a>
-        <a href="#" className="fab fa-twitter"></a>
-        <a href="#" className="fab fa-pinterest"></a>
-        <a href="#" className="fab fa-linkedin"></a>
-        <a href="#" className="fab fa-instagram"></a>
-      </div>
-
-
-    </section>
-
-
-  )
-}
 export default App;
-
-
-
-

@@ -10,3 +10,63 @@ a.active {
     text-shadow: 0 0 1px rgba(255, 255, 255, 0.842);
   }
 }
+@media (max-width: 550px) {
+  .heroPage .details {
+    h1 {
+      font-size: 5rem;
+      width: 100% !important;
+    }
+    p{
+width: 100% !important;
+line-height: 1rem;font-size: 2rem;
+    }
+  }
+}
+/* @media (max-width: 650px) {
+  .heroPage .details {
+    p{
+
+    }
+  }
+}
+@media (max-width: 450px) {
+  .heroPage .details {
+    h1 {
+      font-size: 5rem;
+      width: 100% !important;
+    }
+    p{
+
+    }
+  }
+
+
+  .nav .likedItemsSection {
+    .emptyLikeContainer {
+      h3 {
+        font-size: 3.5rem !important;
+      }
+    }
+
+    .likedItemsContainer {
+      padding-top: 0;
+      width: 100%;
+
+      .likedItems {
+        p {
+          font-size: 1.7rem;
+        }
+
+        button {
+          font-size: 1.2rem;
+          background-color: red;
+          height: 3rem;
+          padding: 0 .8rem;
+        }
+
+
+      }
+
+    }
+  }
+} */

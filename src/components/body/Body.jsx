@@ -1,7 +1,10 @@
 import React from "react";
 import  heroImg from "../../assets/120202.jpg";
 import "./body.scss";
+
 const Body = () => {
+
+
   return (
     <div className="heroPage ">
       <div className="image">

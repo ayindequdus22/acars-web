@@ -1,7 +1,6 @@
 .heroPage {
   position: relative;
   height: 90vh;
-// overflow-x: hidden;
   .image {
     picture img {
       width: 100%;
@@ -23,7 +22,7 @@
       text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.808);
     }
     p{
-        width:60%;
+        width:60rem;
         color: rgb(245, 242, 242);
         line-height: 3.6rem;
     }

@@ -119,13 +119,13 @@ a {
         font-size: 52.5%;
     } 
 }
-/* @media (max-width:550px) {
+@media (max-width:550px) {
     html {
         font-size: 49.5%;
     } 
 }
-@media (max-width:426px) {
+/* @media (max-width:426px) {
     html {
-        font-size: 43%;
+        font-size: 45%;
     } 
 }  */

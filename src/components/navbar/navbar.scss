@@ -185,32 +185,3 @@
     right: 0;
   }
 }
-
-@media (max-width: 450px) {
-  .nav .likedItemsSection{
-    .emptyLikeContainer{
-      h3{
-        font-size: 3.5rem !important ;
-      }
-    }
-    .likedItemsContainer {
-    padding-top: 0;
-    width: 100%;
-
-    .likedItems {
-      p {
-        font-size: 1.7rem;
-      }
-
-      button {
-        font-size: 1.2rem;
-        background-color: red;
-        height: 3rem;
-        padding: 0 .8rem;
-      }
-
-   
-    }
-
-  }}
-}

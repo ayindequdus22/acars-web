@@ -3,8 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addToCart } from '../../store/cartSlice';
 import { addToLiked, removeFromLiked } from '../../store/likeSlice';
 import './products.scss';
-import { product } from './data';
-
+import { useQuery } from '@tanstack/react-query';
+import { Axios } from '../../utils/axios';
+// /all-products
 const Product = () => {
   const dispatch = useDispatch();
   const likedItems = useSelector((state) => state.likedSlice.likedItems);
@@ -17,12 +18,20 @@ const Product = () => {
       dispatch(addToLiked(productItem));
     }
   };
-
+  const {data:products,isLoading} = useQuery({
+    queryKey:["products"],
+    queryFn:async ()=>{
+ const data = await Axios.get("/products/all-products");
+ return data;
+    }
+  })
+  console.log(products    
+  )
   return (
     <div className="brandProductsContainer fldc">
       <h3>Products</h3>
       <div className="brandProducts fldcW">
-        {product.map((productItem) => {
+        {products?.data.map((productItem) => {
           const isLiked = likedItems.some(item => item.id === productItem.id);
           return (
             <div className="brand" key={productItem.id}>
@@ -37,7 +46,7 @@ const Product = () => {
               </div>
               <div className="details fldc">
                 <p>{productItem.name}</p>
-                <p>${productItem.price.toFixed(2)}</p>
+                <p>${productItem.price?.toFixed(2)}</p>
                 <button
                   style={{ height: "4rem", width: "13rem", fontSize: '1.5rem' }}
                   className='btn'

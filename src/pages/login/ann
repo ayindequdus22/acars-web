@@ -120,3 +120,21 @@ const Login = () => {
 }
 
 export default Login
+
+// Call the function to fetch data from the backend
+fetchDataFromBackend();
+  // const fetchDataFromBackend = async () => {
+  //   try {
+  //     const response = await fetch("http://localhost:7000/api/auth/myprofile", {
+  //       method: 'GET',
+  //       credentials: 'include', // Include credentials (such as cookies) with the request
+  //       // Additional headers or options can be specified here
+  //     });
+  //     // const data = await response.json();
+  //     // console.log(data);
+  //     console.log(response)
+  //   } catch (error) {
+  //     console.error('Error fetching data:', error);
+  //   }
+  // };
+  // fetchDataFromBackend()

@@ -1,50 +1,47 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Link,useNavigate } from 'react-router-dom'
-import { PWD_REGEX, USER_REGEX } from '../../auth/regauth';
 import { Axios } from '../../utils/axios';
 import './login.scss'
-import { useDispatch } from 'react-redux';
-import { login as loginme } from '../../store/authSlice';
-const Login = () => {
+import { useMutation,useQueryClient } from '@tanstack/react-query';
+function Login() {
+
+  const queryClient = useQueryClient();
   const userRef = useRef();
 
   const [formObject, setFormObject] = useState({ user: '', pwd: '' });
   const { user, pwd } = formObject;
-  const [validName, setValidName] = useState(false);
-  const [validPwd, setValidPWd] = useState(false);
-  const dispatch = useDispatch()
-const navigate = useNavigate();
+
+  const navigate = useNavigate();
   useEffect(() => {
     userRef.current.focus();
-  }, []) 
+  }, []);
 
 
-  useEffect(() => {
-    const result = USER_REGEX.test(user);
-    setValidName(result)
-  }, [user])
-
-  useEffect(() => {
-    const result = PWD_REGEX.test(pwd);
-    setValidPWd(result);
-  }, [pwd])
-
+  const { mutate, isError, isPending, error } = useMutation({
+    mutationFn: async ({email,password }) => {
+      try {
+        const res = await Axios.post("/auth/login", { email: user, password: pwd });
+        console.log(res);
+        if (res.status !== 200) {
+          throw new Error("Smth went wrong");
+        }
+        navigate("/");
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["authUser"] });
+ 
+    },
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const checkUserAgain = USER_REGEX.test(user);
-    const checkPwdAgain = PWD_REGEX.test(pwd);
-    if (!checkPwdAgain || !checkUserAgain) {
-      // console.log({user,pwd})
-//  useDispatch(login)
-dispatch(loginme({user,pwd}))
-    }
-    else {
-      alert("Input valid values")
-    };
-  }
+    mutate({ email: user, password: pwd });
+  };
   return (
-    <form onSubmit={(e)=>handleSubmit(e)} className='loginForm dfAc'>
+    <form onSubmit={(e) => handleSubmit(e)} className='loginForm dfAc'>
 
       <div className="loginContainer fldc">
         <div className="fldc usPcP">
@@ -55,9 +52,8 @@ dispatch(loginme({user,pwd}))
               placeholder='E-mail' />
           </div>
           <div>
-            <input type="password" placeholder='Password' required 
-              onChange={(e) => setFormObject({ ...formObject, pwd: e.target.value })}
-            />
+            <input type="password" placeholder='Password' required
+              onChange={(e) => setFormObject({ ...formObject, pwd: e.target.value })} />
           </div>
           <div>
           </div>
@@ -66,9 +62,9 @@ dispatch(loginme({user,pwd}))
           <Link to={'/register'}>Register Now</Link>
           <Link to={'/register'}>Forgot Password</Link>
         </div>
-        <div className="btnContainer" >
+        <div className="btnContainer">
           <button type='submit'
-            className="btn">Login</button>
+            className="btn">Login {isPending && "Pending"} {error} </button>
         </div>
         <div style={{ padding: '1rem 0 2rem 0' }}>
           <p>Or Login With</p>
@@ -81,7 +77,7 @@ dispatch(loginme({user,pwd}))
       </div>
 
     </form>
-  )
+  );
 }
 
 export default Login
