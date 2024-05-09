@@ -1,5 +1,12 @@
-export const Footer = () => {
+import { Link } from "react-router-dom"
 
+export const Footer = () => {
+  const categories = [
+    "cars","trucks","new arrivals","buses","jeeps"
+  ]
+const pageLinks = [
+"home","brands","coming soon","contact","blogs"
+]
     return (
       <section className="footer">
   
@@ -12,20 +19,17 @@ export const Footer = () => {
   
           <div className="box">
             <h3>category</h3>
-            <a href="#"> <i className="fas fa-arrow-right"></i> Cars </a>
-            <a href="#"> <i className="fas fa-arrow-right"></i> Jeeps </a>
-            <a href="#"> <i className="fas fa-arrow-right"></i> Trucks </a>
-            <a href="#"> <i className="fas fa-arrow-right"></i> Buses </a>
-            <a href="#"> <i className="fas fa-arrow-right"></i> new arrivals </a>
+            {categories.map((catG,index)=>(
+ <Link key={index} to={catG.split(" ").join("-")}><i className="fas fa-arrow-right"></i> {catG}</Link>
+            ))}
+           
           </div>
   
           <div className="box">
             <h3>quick links</h3>
-            <a href="#"> <i className="fas fa-arrow-right"></i> home </a>
-            <a href="#"> <i className="fas fa-arrow-right"></i> Brands </a>
-            <a href="#"> <i className="fas fa-arrow-right"></i> coming soon </a>
-            <a href="#"> <i className="fas fa-arrow-right"></i> contact </a>
-            <a href="#"> <i className="fas fa-arrow-right"></i> blogs </a>
+            {pageLinks.map((catG,index)=>(
+ <Link key={index} to={catG.split(" ").join("-")}><i className="fas fa-arrow-right"></i> {catG}</Link>
+            ))}
           </div>
   
           <div className="box">

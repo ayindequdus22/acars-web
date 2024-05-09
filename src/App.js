@@ -1,20 +1,23 @@
 import './App.css';
-import React, { createContext, useContext, useState } from 'react';
+import React,{lazy,Suspense } from "react";
+
 import './fontawesome-free-6.5.1-web/fontawesome-free-6.5.1-web/css/all.css';
 import { Provider } from 'react-redux';
 import store from './store/store';
-import { createBrowserRouter, Outlet, RouterProvider, Navigate } from 'react-router-dom'; // Correct import
+import { createBrowserRouter, Outlet, RouterProvider, Navigate, } from 'react-router-dom'; // Correct import
 import Home from './pages/home/Home';
 import Register from './pages/register/Register';
-import Cart from './pages/cart/Cart';
 import Navbar from './components/navbar/Navbar';
 import Login from './pages/login/Login';
-import Brands from './pages/brand/Brand';
-import ComingSoon from './pages/soon/ComingSoon';
 import ShowlikedcontextProvider from './utils/showlikedcontext';
 import { Footer } from './components/footer/Footer';
-import { Axios } from './utils/axios'; // Correct import
+import { Axios } from './utils/axios'; 
 import { useQuery } from '@tanstack/react-query';
+import Loader from './Loader';
+const Brands = lazy(() => import('./pages/brand/Brand'));
+const Cart = lazy(() => import('./pages/cart/Cart'));
+const ComingSoon = lazy(() => import('./pages/soon/ComingSoon'));
+
 
 function App() {
   const { data: user, isLoading, error, isError } = useQuery({
@@ -33,8 +36,9 @@ function App() {
     retry: false,
   });
 if (isLoading) {
-  return "di loadin"
-}const router = createBrowserRouter([
+  return <Loader/>
+}
+const router = createBrowserRouter([
     {
       path: '/',
       element:
@@ -89,11 +93,13 @@ if (isLoading) {
 
   return (
     <>
+    <Suspense fallback={<Loader/>}>
       <Provider store={store}>
         <ShowlikedcontextProvider>
           <RouterProvider router={router} />
         </ShowlikedcontextProvider>
       </Provider>
+      </Suspense>
     </>
   );
 }
