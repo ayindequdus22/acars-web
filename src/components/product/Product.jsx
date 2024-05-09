@@ -5,7 +5,6 @@ import { addToLiked, removeFromLiked } from '../../store/likeSlice';
 import './products.scss';
 import { useQuery } from '@tanstack/react-query';
 import { Axios } from '../../utils/axios';
-// /all-products
 const Product = () => {
   const dispatch = useDispatch();
   const likedItems = useSelector((state) => state.likedSlice.likedItems);
@@ -25,8 +24,6 @@ const Product = () => {
  return data;
     }
   })
-  console.log(products    
-  )
   return (
     <div className="brandProductsContainer fldc">
       <h3>Products</h3>
@@ -34,7 +31,7 @@ const Product = () => {
         {products?.data.map((productItem) => {
           const isLiked = likedItems.some(item => item.id === productItem.id);
           return (
-            <div className="brand" key={productItem.id}>
+            <div className="brand" key={productItem._id}>
               <div
                 className={isLiked ? "fa fa-heart active" : "fa fa-heart"}
                 onClick={() => handleLikeClick(productItem)}
