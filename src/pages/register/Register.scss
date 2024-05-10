@@ -16,12 +16,21 @@
     input {
       height: 4rem;
       width: 45rem;
+      border-radius: 0.5rem;
       padding-left: 1rem;
       font-size: 2rem;
-      border-radius: 0.5rem;
       border: 1px solid rgba(0, 0, 0, 0.582);
     }
-
+    // .errorContainer{
+    //   margin: 1rem 0; padding: .5rem 1% !important;
+    //   background-color: black;
+    //   color:grey;
+    //   width: 45rem;
+    //   border-radius: 0.5rem;
+    //   p{
+    //     font-size: 2rem;
+    //   }
+    // }
     .btnContainer {
       .btn {
         width: 45rem;
@@ -90,9 +99,20 @@
 // }
 
 @media (max-width:480px) {
+ 
   .registerFormContainer .registerForm {
     width: 80vw;
-
+ .errorContainer{
+    margin: 1rem 0 .5rem; padding: 1rem 2% !important;
+    background-color: black;
+    color:red;
+     /* rgba(255, 255, 255, 0.671) !important; */
+    width: 75vw;
+    border-radius: 0.5rem;
+    p{text-align: left;
+      font-size: 2rem;
+    }
+  }
     input {
       width: 75vw;
 

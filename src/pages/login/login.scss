@@ -89,7 +89,17 @@
 @media (max-width:400px) {
   .loginForm .loginContainer {
     width: 38rem !important;
-
+    .errorContainer{
+      margin: 1rem 0 .5rem; padding: 1rem 2% !important;
+      background-color: black;
+      color:red;
+       /* rgba(255, 255, 255, 0.671) !important; */
+      width: 34rem;
+      border-radius: 0.5rem;
+      p{text-align: left;
+        font-size: 2rem;
+      }
+    }
     input ,.btnContainer .btn,.continuation button{
       width: 34rem !important;
 

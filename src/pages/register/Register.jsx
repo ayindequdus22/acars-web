@@ -1,24 +1,29 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-// import { PWD_REGEX, USER_REGEX } from '../../auth/regauth';
-import { Axios } from '../../utils/axios'; import './Register.scss'
+import { useForm } from 'react-hook-form';
+import { Axios } from '../../utils/axios';
+import './Register.scss'
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-const Register = () => {
-  const userRef = useRef();
 
+const Register = () => {
+  const validatePassword = (value) => {
+    if (!/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_])/.test(value)) {
+      return "Password must contain at least one lowercase letter, one uppercase letter, one digit, and one special character.";
+    }
+    return true;
+  };
   const queryClient = useQueryClient();
-  const [formObject, setFormObject] = useState({ userName: "", email: "", pwd: "", matchpwd: "" });
-  const { userName, email, pwd, matchpwd } = formObject;
+  const { register, handleSubmit, formState: { errors }, watch } = useForm();
+
+  const password = useRef({});
+  password.current = watch("password", "");
   const navigate = useNavigate();
-  useEffect(() => {
-    userRef.current.focus();
-  }, [])
+
 
   const { mutate, isError, isPending, error } = useMutation({
-    mutationFn: async () => {
+    mutationFn: async ({ username, email, password }) => {
       try {
-        const res = await Axios.post("/auth/register", { username:userName, email, password:pwd });
-
+        const res = await Axios.post("/auth/register", { username, email, password });
         if (res.statusText !== "Created") {
           throw new Error("Smth went wrong");
         }
@@ -28,58 +33,130 @@ const Register = () => {
       }
     },
     onSuccess: () => {
-      // toast.success("Account created successfully");
-
       queryClient.invalidateQueries({ queryKey: ["authUser"] });
 
     },
   })
 
-  const handleSubmit = async (e) => {
-    mutate()
-    e.preventDefault();
-  }
+  const onSubmit = (data) => {
+    const { username, email, password } = data;
+    mutate({ username, email, password })
+  };
+
   return (
     <>
-      <form className="registerFormContainer dfAc" onSubmit={(e) => handleSubmit(e)}>
+      <form className="registerFormContainer dfAc" onSubmit={handleSubmit(onSubmit)}>
         <div className="registerForm fldc">
-
           <div className="namesInput2">
-            <input type="text" ref={userRef} required onChange={(e) => setFormObject({ ...formObject, userName: e.target.value })} placeholder="User Name" />
+            <input
+              type="text"
+              {...register("username", {
+                required: "Please enter your username",
+                minLength: {
+                  value: 4,
+                  message: "Username must have at least 8 characters",
+                },
+                maxLength: {
+                  value: 20,
+                  message: "Username must have at most 20 characters",
+                },
+              })}
+              placeholder="Username"
+            />
+            {errors.username && (
+              <div className='errorContainer'>
+                <p>{errors.username.message}</p>
+              </div>
+            )}
           </div>
           <div className="namesInput2">
-            <input type="email" placeholder="E-mail" required onChange={(e) => setFormObject({ ...formObject, email: e.target.value })} />
+            <input
+              type="email"
+              {...register("email", {
+                required: "Please enter your email address",
+                pattern: {
+                  value: /^\S+@\S+$/i,
+                  message: 'Invalid email address',
+                },
+                validate: (value) => {
+                  if (!value.endsWith(".com")) {
+                    return "Invalid email address";
+                  }
+                },
+              })}
+              placeholder="E-mail"
+              required
+            />
+            {errors.email && (
+              <div className='errorContainer'>
+                <p>{errors.email.message}</p>
+              </div>
+            )}
           </div>
           <div className="">
-            <input type="password" placeholder="Password" required autoComplete='false' onChange={(e) => setFormObject({ ...formObject, pwd: e.target.value })} />
+            <input
+              type="password"
+              {...register("password", {
+                required: "Please enter your password.",
+                minLength: {
+                  value: 8,
+                  message: "Password must have at least 8 characters",
+                },
+                maxLength: {
+                  value: 20,
+                  message: "Password must have at most 20 characters",
+                }, validate: validatePassword
 
+              })}
+              placeholder="Password"
+              autoComplete='false'
+            />
+            {errors.password && (
+              <div className="errorContainer">
+                <p>{errors.password.message}</p>
+              </div>
+            )}
           </div>
           <div className="">
-
-            <input type="password" placeholder="Confirm Password" required onChange={(e) => setFormObject({ ...formObject, matchpwd: e.target.value })} />
+            <input
+              type="password"
+              {...register("confirmPassword", {
+                required: "Please confirm your password.",
+                validate: (value) =>
+                  value === password.current || "The passwords do not match.",
+              })}
+              placeholder="Confirm Password"
+              autoComplete='off'
+              required
+            />
+            {errors.confirmPassword && (
+              <div className="errorContainer">
+                <p>{errors.confirmPassword.message}</p>
+              </div>
+            )}
           </div>
           <div className="btnContainer">
-            {isPending ? "User Account is being created" : ""}
             <button className="btn">Register</button>
           </div>
           <div>
-            {" "}
             <p>or</p>
           </div>
-
           <div className="continuation fldc-jc">
-            {/* <div className="loginLink " style={{display:'flex',justifyContent:"flex-end"}}> */}
             <Link to={"/login"} style={{ textAlign: "right", padding: "0" }}>Login</Link>
-            {/* </div>     */}
             <button className='df-ac'>
               <div className="fab fa-facebook-square"></div>
-              <div>Facebook</div> </button>
-            <button className='df-ac gmail'><div className="fab fa-google"></div> <div>Google</div> </button>
-            <button className='df-ac twitter'><div className="fab fa-twitter-square"></div><div>Twitter</div></button>
+              <div>Facebook</div>
+            </button>
+            <button className='df-ac gmail'>
+              <div className="fab fa-google"></div>
+              <div>Google</div>
+            </button>
+            <button className='df-ac twitter'>
+              <div className="fab fa-twitter-square"></div>
+              <div>Twitter</div>
+            </button>
           </div>
         </div>
-
-
       </form>
     </>
   );
