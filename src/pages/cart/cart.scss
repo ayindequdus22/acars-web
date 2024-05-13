@@ -83,7 +83,7 @@
       flex-grow: 1;
       flex-shrink: 1;
       height: 70%;
-      background-color: rgba(31, 41, 55, .9) !important;
+      background-color: var(--item-color) !important;
 
 
       box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.582);
@@ -160,7 +160,7 @@
       }
 
       .cartItem {
-        background-color: rgba(31, 41, 55, .9) !important;
+        background-color:var(--item-color) !important;
         padding: 1rem;
         width: 100%;
         justify-content: space-between;
