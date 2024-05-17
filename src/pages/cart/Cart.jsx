@@ -1,33 +1,19 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import {
-  cartProducts,
-  decreaseItemQty,
-  selectTotalAmount,
-  setGetTotals,
-  increaseItemQty,
-  removeItem,
-  upDateItemQty,
-  setClearCartItems,
-  selectTotalQTY,
-} from "../../store/cartSlice";
 import "./cart.scss";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { UseRemoveItemCartFunction, useClearCart, useGetCartHook } from "../../utils/cartQueries";
 
 const Cart = () => {
-  const dispatch = useDispatch();
-  const cartItems = useSelector(cartProducts);
-  const totalAmount = useSelector(selectTotalAmount);
-  const totalQTY = useSelector(selectTotalQTY);
-
-  useEffect(() => {
-    dispatch(setGetTotals());
-  }, [cartItems, dispatch]);
+  const removeFromCart = UseRemoveItemCartFunction();
+  const clearCart = useClearCart();
+  const {data} = useGetCartHook()
+const cart = data?.cart;
+console.log(cart)
   return (
-    <>
-      {cartItems.length === 0 ? (
+    <> {cart && cart.cartItems ? (
         <>
         <div className="emptyCart dfAc">
           <h1>Cart is empty</h1>
@@ -37,7 +23,7 @@ const Cart = () => {
         <>
           <div className="cartContainer">
             <div className="total df-jsb">
-              <p>Total:</p><span>{totalAmount}</span>
+              <p>Total:</p><span>{cart?.totalPrice}</span>
             </div>
             <div className="necessities">
               <p>
@@ -51,7 +37,7 @@ const Cart = () => {
                   <span style={{ paddingLeft: "1rem" }}>Continue Shopping</span>
                 </Link>
                 <div className="clearBtn">
-                  <button onClick={() => dispatch(setClearCartItems())}>
+                  <button onClick={() => clearCart.mutate()}>
                     Clear Cart
                   </button>
                 </div>
@@ -60,24 +46,24 @@ const Cart = () => {
 
             <div className="cartCont">
               <div className="cartItemContainer">
-                {cartItems.map((cartItem) => {
-                  let newPrice = (
-                    cartItem.price * cartItem.cartQuantity
-                  ).toFixed(2);
+                {cart.cartItems?.map((cartItem) => {
+                  // let newPrice = (
+                  //   cartItem.price * cartItem.cartQuantity
+                  // ).toFixed(2);
 
                   return (
             
-                      <div className="cartItem" key={cartItem.id}>
+                      <div className="cartItem" key={cartItem._id}>
                         <div className="image">
-                          <img src={cartItem.image} alt="" />
+                          <img src={cartItem.product.image} alt="" />
                         </div>
                         <div style={{ padding: "" }}>
-                          <p style={{ fontSize: "2rem" }}>{cartItem.name}</p>
+                          <p style={{ fontSize: "2rem" }}>{cartItem.product.name}</p>
                         </div>
                         <div className="changes">
                           <button
                             onClick={() => {
-                              dispatch(decreaseItemQty(cartItem));
+                              
                               toast("Wow so easy!");
                             }}
                           >
@@ -87,26 +73,29 @@ const Cart = () => {
                         
                             type="text"
                             onSubmit={() => {
-                              dispatch(upDateItemQty({ cartItem }));
+                              // dispatch(upDateItemQty({ cartItem })
+                            // );
                             }} disabled
-                            value={cartItem.cartQuantity}
+                            value={cartItem.quantity}
                           />
                           <button
-                            onClick={() => dispatch(increaseItemQty(cartItem))}
+                            // onClick={() => (increaseItemQty(cartItem))}
                           >
                             +
                           </button>
                         </div>
                         <div className="details">
-                          <p>{newPrice}</p>
+                          {/* <p>{newPrice}</p> */}
                           <p>
-                            {cartItem.price.toFixed(2)} x{" "}
-                            {cartItem.cartQuantity} items
+                            {cartItem.product.price.toFixed(2)} x{" "}
+                            {cartItem.quantity} items
                           </p>
                         </div>
                         <div className="remove">
                           <button
-                            onClick={() => dispatch(removeItem(cartItem))}
+                            onClick={() => {
+                              removeFromCart.mutate(cartItem.product._id)
+                            }}
                           >
                             Remove Item
                           </button>
@@ -120,11 +109,11 @@ const Cart = () => {
               <div className="checkOut">
                 <div className="orderHeader df-jsb-ac">
                   <p>Order Summary </p>
-                  <p>{totalQTY} items</p>
+                  {/* <p>{totalQTY} items</p> */}
                 </div>
                 <div className="df-jsb-ac subtotal">
                   <p>Subtotal</p>
-                  <p>{totalAmount}</p>
+                  {/* <p>{totalAmount}</p> */}
                 </div>
                 <div className="df-jsb-ac subtotal">
                   <p>Discount</p>
@@ -132,7 +121,7 @@ const Cart = () => {
                 </div>
                 <div className="df-jsb-ac subtotal">
                   <p>Total</p>
-                  <p>{(totalAmount - totalAmount / 10).toFixed(2)}</p>
+                  {/* <p>{(totalAmount - totalAmount / 10).toFixed(2)}</p> */}
                 </div>
                 <div className="deliveryCharges">
                   <p>Excluding delivery charge</p>
@@ -147,6 +136,9 @@ const Cart = () => {
         </>
       )}
     </>
+    
+    
+ 
   );
 };
 

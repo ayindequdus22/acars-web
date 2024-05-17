@@ -3,7 +3,6 @@
 }
 
 .cartContainer {
-  // padding: 10rem 2%;
   padding: 0;
   margin: 0;
 
@@ -160,7 +159,7 @@
       }
 
       .cartItem {
-        background-color:var(--item-color) !important;
+        background-color: var(--item-color) !important;
         padding: 1rem;
         width: 100%;
         justify-content: space-between;
@@ -208,7 +207,7 @@
             font-size: 2rem;
             color: var(--primary-color) !important;
             height: 3rem;
-            width: 3rem;
+            width: 4.5rem;
             text-align: center;
             border: 1px solid var(--primary-color);
           }
@@ -240,7 +239,6 @@
 
 @media (max-width: 670px) {
   .cartContainer {
-    // padding: 10rem 0;%;
     padding-top: 10rem;
 
     .necessities {

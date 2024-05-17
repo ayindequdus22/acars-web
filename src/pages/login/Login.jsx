@@ -17,7 +17,7 @@ function Login() {
       try {
         const res = await Axios.post("/auth/login", { email, password});
         if (res.status !== 200) {
-          throw new Error("Smth went wrong");
+        console.log("Smth went wrong");
         }
         navigate("/");
       } catch (error) {

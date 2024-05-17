@@ -2,17 +2,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import "./navbar.scss";
 import { Link, NavLink } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  cartProducts,
-  setGetTotals,
-  selectTotalQTY,
-} from "../../store/cartSlice";
 import { removeFromLiked } from '../../store/likeSlice';
 import { showLikedContext } from "../../utils/showlikedcontext";
+import { useDispatch, useSelector } from "react-redux";
 
 const Navbar = () => {
   const showme = useContext(showLikedContext);
+
   // console.log(showme.show)
   const [active, setActive] = useState(false);
   const onNavScroll = () => {
@@ -40,14 +36,8 @@ const Navbar = () => {
 
 
   const dispatch = useDispatch();
-  const cartItems = useSelector(cartProducts);
   const likedItems = useSelector((state) => state.likedSlice.likedItems
   )
-  useEffect(() => {
-    dispatch(setGetTotals());
-  }, [cartItems, dispatch]);
-
-  const totalQTY = useSelector(selectTotalQTY);
 
 
   return (
@@ -68,7 +58,7 @@ const Navbar = () => {
           <div className="fa fa-search"></div>
           <Link to="/cart" className="cartIcon">
             <div className="fa fa-shopping-cart"></div>
-            <div>{totalQTY}</div>
+            {/* <div>{totalQTY}</div> */}
           </Link>
           <div onClick={() => showme.setShow(true)} className="likedIcon">
             <div className="fa fa-heart"></div>

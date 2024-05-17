@@ -1,99 +1,66 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { toast } from "react-toastify";
-const initialState = {
-  cartItems: localStorage.getItem("cart")
-    ? JSON.parse(localStorage.getItem("cart"))
-    : [],
-  cartTotalAmount: 0,
-  cartTotalQuantity: 0,
-};
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { Axios } from "../utils/axios";
+import { UseAddToCartFunction } from "../utils/cartQueries";
+
+// Async thunk to fetch cart items from the backend
+export const fetchCartItems = createAsyncThunk("cart/fetchCartItems", async () => {
+  const response = await Axios.get("/cart");
+  return response.data;
+});
+
+// Async thunk to add an item to the cart
+export const addItemToCart = createAsyncThunk("cart/addItemToCart",async ({productId,quantity}) => {
+  UseAddToCartFunction({productId,quantity})
+
+}
+);
+
+// Async thunk to remove an item from the cart
+export const removeItemFromCart = createAsyncThunk("cart/removeItemFromCart", async (itemId) => {
+  const response = await Axios.delete(`/cart/remove/${itemId}`);
+  return { itemId };
+});
+
+// Async thunk to update item quantity in the cart
+export const updateCartItemQuantity = createAsyncThunk("cart/updateCartItemQuantity", async ({ itemId, quantity }) => {
+  const response = await Axios.put(`/cart/update/${itemId}`, { quantity });
+  return response.data;
+});
 
 const CartSlice = createSlice({
-  initialState,
   name: "cart",
-  reducers: {
-    addToCart(state, action) {
-      const itemIndex = state.cartItems.find(
-        (item) => item.id === action.payload.id
-      );
-      if (itemIndex) {
-        itemIndex.cartQuantity += 1;
-      }
-     
-      else {
-        const temp = { ...action.payload, cartQuantity: 1 };
-        state.cartItems.push(temp);
-      }
-      localStorage.setItem("cart", JSON.stringify(state.cartItems));
-      toast.success(`${action.payload.name} has been added`);
-    },
-    removeItem: (state, action) => {
-      const removeItem = state.cartItems.filter(
-        (item) => item.id !== action.payload.id
-      );
-      state.cartItems = removeItem;
-      localStorage.setItem("cart", JSON.stringify(state.cartItems));
-      toast.success(`${action.payload.name} has been removed`);
-    },
-    increaseItemQty(state, action) {
-      const itemIndex = state.cartItems.find(
-        (item) => item.id === action.payload.id
-      );
-      if (itemIndex) {
-        itemIndex.cartQuantity += 1;
-      }
-      localStorage.setItem("cart", JSON.stringify(state.cartItems));
-    },
-    decreaseItemQty(state, action) {
-      const itemIndex = state.cartItems.find(
-        (item) => item.id === action.payload.id
-      );
-      if (itemIndex.cartQuantity > 1) {
-        itemIndex.cartQuantity -= 1;
-      }
-      localStorage.setItem("cart", JSON.stringify(state.cartItems));
-    },
-    setClearCartItems(state, action) {
-      state.cartItems = [];
-      console.log("helo");
-      localStorage.setItem("cart", JSON.stringify(state.cartItems));
-
-      toast.success(`Cart Cleared`);
-    },
-    setGetTotals: (state, action) => {
-      let { totalAmount, totalQTY } = state.cartItems.reduce(
-        (cartTotal, cartItem) => {
-          const { price, cartQuantity } = cartItem;
-          const totalPrice = price * cartQuantity;
-
-          cartTotal.totalAmount += totalPrice;
-          cartTotal.totalQTY += cartQuantity;
-
-          return cartTotal;
-        },
-        {
-          totalAmount: 0,
-          totalQTY: 0,
-        }
-      );
-
-      state.cartTotalAmount = totalAmount.toFixed(2);
-      state.cartTotalQuantity = totalQTY;
-    },
+  initialState: {
+    cartItems: [],
+    status: 'idle',
+    error: null,
   },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchCartItems.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchCartItems.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.cartItems = action.payload;
+      })
+      .addCase(fetchCartItems.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+      })
+      .addCase(addItemToCart.fulfilled, (state, action) => {
+        state.cartItems.push(action.payload);
+      })
+      .addCase(removeItemFromCart.fulfilled, (state, action) => {
+        state.cartItems = state.cartItems.filter(item => item.id !== action.payload.itemId);
+      })
+      .addCase(updateCartItemQuantity.fulfilled, (state, action) => {
+        const index = state.cartItems.findIndex(item => item.id === action.payload.id);
+        if (index !== -1) {
+          state.cartItems[index].quantity = action.payload.quantity;
+        }
+      });
+  }
 });
-export const {
-  addToCart,
-  removeItem,
-  increaseItemQty,
-  upDateItemQty,
-  decreaseItemQty,
-  setClearCartItems,
-  setGetTotals,
-} = CartSlice.actions;
-
-export const cartProducts = (state) => state.cart.cartItems;
-export const selectTotalAmount = (state) => state.cart.cartTotalAmount;
-export const selectTotalQTY = (state) => state.cart.cartTotalQuantity;
 
 export default CartSlice.reducer;

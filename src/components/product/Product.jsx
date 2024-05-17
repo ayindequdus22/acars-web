@@ -1,14 +1,15 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addToCart } from '../../store/cartSlice';
+
 import { addToLiked, removeFromLiked } from '../../store/likeSlice';
-import './products.scss';
 import { useQuery } from '@tanstack/react-query';
 import { Axios } from '../../utils/axios';
+import './products.scss';
+import { UseAddToCartFunction } from '../../utils/cartQueries';
 const Product = () => {
   const dispatch = useDispatch();
   const likedItems = useSelector((state) => state.likedSlice.likedItems);
-  
+  const addToCart = UseAddToCartFunction()
   const handleLikeClick = (productItem) => {
     const isLiked = likedItems.some(item => item.id === productItem.id);
     if (isLiked) {
@@ -17,13 +18,14 @@ const Product = () => {
       dispatch(addToLiked(productItem));
     }
   };
-  const {data:products,isLoading} = useQuery({
-    queryKey:["products"],
-    queryFn:async ()=>{
- const data = await Axios.get("/products/all-products");
- return data;
+  const { data: products, isLoading } = useQuery({
+    queryKey: ["products"],
+    queryFn: async () => {
+      const data = await Axios.get("/products/all-products");
+      return data;
     }
   })
+
   return (
     <div className="brandProductsContainer fldc">
       <h3>Products</h3>
@@ -47,7 +49,9 @@ const Product = () => {
                 <button
                   style={{ height: "4rem", width: "13rem", fontSize: '1.5rem' }}
                   className='btn'
-                  onClick={() => dispatch(addToCart(productItem))}
+                  onClick={async () => {
+                    addToCart.mutate({ productId: productItem._id, quantity: 1 })
+                  }}
                 >
                   Add to Cart
                 </button>
