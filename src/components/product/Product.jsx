@@ -1,6 +1,5 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
 import { addToLiked, removeFromLiked } from '../../store/likeSlice';
 import { useQuery } from '@tanstack/react-query';
 import { Axios } from '../../utils/axios';
@@ -31,7 +30,8 @@ const Product = () => {
       <h3>Products</h3>
       <div className="brandProducts fldcW">
         {products?.data.map((productItem) => {
-          const isLiked = likedItems.some(item => item.id === productItem.id);
+          // console.log(productItem)
+          const isLiked = likedItems.some(item => item.id === productItem._id);
           return (
             <div className="brand" key={productItem._id}>
               <div

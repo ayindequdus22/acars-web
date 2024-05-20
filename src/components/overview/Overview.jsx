@@ -32,7 +32,7 @@ const Overview = () => {
               <p>{myOverview.name}</p>
               <p>${myOverview.price?.toFixed(2)}</p>
               <Link
-                className="btn" to={'/brands'} style={{}}
+                className="pageLinks" to={'/brands'} style={{}}
               >
                 View Products
               </Link>

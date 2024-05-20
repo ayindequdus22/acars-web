@@ -11,10 +11,9 @@ const createCartQuery = async () => {
 const fetchCartQuery = async () => {
     try {
         const response = await Axios.get(`/${API_URL}/items`);
-        console.log(response.data)
         return response.data;
     } catch (error) {
-        console.log(error)
+        console.log("Couldn't Get Cart")
     }
 };
 
@@ -24,35 +23,34 @@ const addItemToCartQuery = async ({ productId, quantity }) => {
         console.log(response.data)
         return response.data;
     } catch (error) {
-        console.log(error)
+        console.log("Couldn't Add To Cart")
     }
 };
-
+const updateItemQuantityQuery = async ({ productId, update }) => {
+    try {
+        const response = await Axios.post(`/${API_URL}/update`, { productId, update });
+        return response.data;
+    } catch (error) {
+        console.log("Couldn't Update Cart")
+    }
+};
 const removeItemFromCartQuery = async ({ productId }) => {
     try {
         const response = await Axios.post(`/${API_URL}/remove`, { productId });
-        console.log(response);
         return response.data;
     } catch (error) {
-        console.log(error)
+        console.log("Couldn't Remove Item Cart")
     }
 };
 
-const updateItemQuantityQuery = async ({ productId, quantity }) => {
-    try {
-        const response = await Axios.post(`/${API_URL}/update`, { productId, quantity });
-        return response.data;
-    } catch (error) {
-        console.log(error)
-    }
-};
+
 
 const clearCartQuery = async () => {
     try {
         const response = await Axios.post(`/${API_URL}/clear`);
         return response.data;
     } catch (error) {
-        console.log(error)
+        console.log("Couldn't Clear Cart")
     }
 };
 export { clearCartQuery, createCartQuery, fetchCartQuery, addItemToCartQuery, removeItemFromCartQuery, updateItemQuantityQuery }

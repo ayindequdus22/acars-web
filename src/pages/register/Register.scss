@@ -1,9 +1,6 @@
 .registerFormContainer {
-  //   background-color: rgba(31, 41, 55);
   height: 100vh;
-// padding: 0 4%;
   .registerForm {
-    // height: 75vh;
     border-radius: 1.5rem;
     width: 49rem;
     gap: 1rem;
@@ -37,12 +34,17 @@
         border-radius: 0.5rem;
         font-size: 2rem;
         height: 4rem;
+        background-color: rgba(31, 41, 55);
+
       }
     }
 
     .continuation {
       gap: 1rem;
-
+.loginLink{
+  text-align: right;
+  padding: 0;color: var(--primary-color) !important;
+}
       button {
         border: none;
         border-radius: 0.5rem;

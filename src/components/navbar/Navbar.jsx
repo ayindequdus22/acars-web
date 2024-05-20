@@ -5,11 +5,14 @@ import { Link, NavLink } from "react-router-dom";
 import { removeFromLiked } from '../../store/likeSlice';
 import { showLikedContext } from "../../utils/showlikedcontext";
 import { useDispatch, useSelector } from "react-redux";
+import { useGetCartHook } from "../../utils/cartQueries";
 
 const Navbar = () => {
   const showme = useContext(showLikedContext);
+const {data,isLoading} = useGetCartHook();
 
-  // console.log(showme.show)
+const totalQTY = !isLoading ? data?.cart.totalQuantity : 0
+
   const [active, setActive] = useState(false);
   const onNavScroll = () => {
 
@@ -58,7 +61,7 @@ const Navbar = () => {
           <div className="fa fa-search"></div>
           <Link to="/cart" className="cartIcon">
             <div className="fa fa-shopping-cart"></div>
-            {/* <div>{totalQTY}</div> */}
+            <div>{totalQTY}</div>
           </Link>
           <div onClick={() => showme.setShow(true)} className="likedIcon">
             <div className="fa fa-heart"></div>

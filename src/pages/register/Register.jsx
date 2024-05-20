@@ -142,7 +142,9 @@ const Register = () => {
             <p>or</p>
           </div>
           <div className="continuation fldc-jc">
-            <Link to={"/login"} style={{ textAlign: "right", padding: "0" }}>Login</Link>
+            <Link to={"/login"} className='loginLink' 
+            // style={{ textAlign: "right", padding: "0",color:"red" }}
+            >Login</Link>
             <button className='df-ac'>
               <div className="fab fa-facebook-square"></div>
               <div>Facebook</div>

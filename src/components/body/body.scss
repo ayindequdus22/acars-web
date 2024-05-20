@@ -1,6 +1,7 @@
 .heroPage {
   position: relative;
   height: 90vh;
+
   .image {
     picture img {
       width: 100%;
@@ -9,33 +10,31 @@
       object-fit: cover;
     }
   }
+
   .details {
     position: absolute;
     height: inherit;
     top: 30%;
     padding: 0 6%;
     width: inherit;
+
     // background-color: rgba(0, 0, 0, 0.219);
     h1 {
       width: 60rem;
       color: rgb(255, 255, 255);
       text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.808);
     }
-    p{
-        width:60rem;
-        color: rgb(245, 242, 242);
-        line-height: 3.6rem;
+
+    p {
+      width: 60rem;
+      color: rgb(245, 242, 242);
+      line-height: 3.6rem;
     }
-    button {
-        margin-top: 2rem;
+
+    .pageLinks {
+      width: 25rem;display: flex;align-items: center;
+      justify-content: center;
       height: 4.5rem;
-      width: 19rem;color: rgb(255, 255, 255);
-      border: 1px solid rgb(255, 255, 255);
-      background-color: transparent;
-      cursor: pointer;
-      font-size: 2rem;
-      border-radius: 5px;
-      background: linear-gradient(45deg, rgb(50, 108, 163), rgb(9, 43, 78));
     }
   }
 }

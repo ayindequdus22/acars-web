@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import React, { lazy, Suspense, useContext } from "react";
 import './fontawesome-free-6.5.1-web/fontawesome-free-6.5.1-web/css/all.css';
 import { Provider } from 'react-redux';
@@ -17,13 +17,11 @@ const Cart = lazy(() => import('./pages/cart/Cart'));
 const ComingSoon = lazy(() => import('./pages/soon/ComingSoon'));
 
 function App() {
-  const { data: user, isLoading, error } = useContext(userContext);
+  const { data: user, isLoading } = useContext(userContext);
   if (isLoading) {
     return <Loader />
   }
-  if(error){
-    return ""
-  }
+
   const router = createBrowserRouter([
     {
       path: '/',

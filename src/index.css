@@ -6,7 +6,7 @@
   --bg-color: rgba(4, 12, 24);
   ;
   --item-color:rgba(31, 41, 55, 0.1) ;
-  --primary-color: rgba(52, 152, 219,.5);
+  --primary-color: rgba(52, 152, 219);
   /* rgb(44, 130, 201); */
 }
 
@@ -76,6 +76,7 @@ body::-webkit-scrollbar-thumb {
   width: 1rem;
 
 }
+
 
 
 
