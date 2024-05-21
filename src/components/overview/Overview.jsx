@@ -19,7 +19,7 @@ const Overview = () => {
     <div className="overviewProductsContainer fldc">
       <h3>Overview</h3>
       <div className="overviewProducts fldcW">
-        {overview?.data.map((myOverview, id) => (
+        {overview?.data?.map((myOverview, id) => (
 
           <div className="overView" key={id}>
             <div className="fa fa-heart" onClick={() => showme.setShow(true)}></div>
