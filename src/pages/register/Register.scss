@@ -1,56 +1,66 @@
 .registerFormContainer {
   height: 100vh;
+
   .registerForm {
     border-radius: 1.5rem;
-    width: 49rem;
+    padding: 2rem 1%;
+    width: 45rem;
     gap: 1rem;
     background-color: rgba(31, 41, 55);
-    padding: 2rem 1%;
     text-align: center;
     justify-content: center;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.582);
 
+
     input {
       height: 4rem;
-      width: 45rem;
-      border-radius: 0.5rem;
+      width: 40rem;
       padding-left: 1rem;
       font-size: 2rem;
+      border-radius: 0.5rem;
       border: 1px solid rgba(0, 0, 0, 0.582);
     }
-    // .errorContainer{
-    //   margin: 1rem 0; padding: .5rem 1% !important;
-    //   background-color: black;
-    //   color:grey;
-    //   width: 45rem;
-    //   border-radius: 0.5rem;
-    //   p{
-    //     font-size: 2rem;
-    //   }
-    // }
+
     .btnContainer {
+      .customContainer {
+        height: 4rem;
+
+        .customLoader {
+          width: 40px;
+          height: 40px;
+        }
+      }
+
       .btn {
-        width: 45rem;
+        transition: all 0s linear;
+        width: 40rem;
         border-radius: 0.5rem;
         font-size: 2rem;
-        height: 4rem;
         background-color: rgba(31, 41, 55);
+        height: 4rem;
 
+        &:hover {
+          transition: all .5s ease;
+        }
       }
     }
 
     .continuation {
       gap: 1rem;
-.loginLink{
-  text-align: right;
-  padding: 0;color: var(--primary-color) !important;
-}
+
+      .loginLink {
+        text-align: right;
+        padding: 0;
+        color: var(--primary-color) !important;
+      }
+
       button {
         border: none;
         border-radius: 0.5rem;
-        height: 4rem;cursor: pointer;
+        height: 4rem;
+        cursor: pointer;
         color: white;
-        width: 45rem;
+        width: 40rem;
 
         div:nth-child(1) {
           border-top-left-radius: 0.5rem;
@@ -58,15 +68,6 @@
           width: 5rem;
           line-height: 4rem !important;
           font-size: 2rem;
-        }
-
-        &:nth-child(2) {
-          background: blue;
-
-          div:nth-child(1) {
-            padding: 0 1rem;
-            background-color: rgba(26, 0, 143, 0.62) !important;
-          }
         }
 
         div:nth-child(2) {
@@ -80,52 +81,29 @@
   }
 }
 
-// @media (max-width:600px) {
-//   .registerFormContainer .registerForm {
-//     width: 33rem;
-// // box-shadow: none;
-//     input {
-//       width: 30rem;
-
-//     }
-
-//     .btnContainer .btn {
-//       width: 30rem;
-//     }
-
-//     .continuation button {
-//       width: 30rem;
-
-//     }
-//   }
-// }
-
 @media (max-width:480px) {
- 
+
   .registerFormContainer .registerForm {
-    width: 80vw;
- .errorContainer{
-    margin: 1rem 0 .5rem; padding: 1rem 2% !important;
-    background-color: black;
-    color:red;
-     /* rgba(255, 255, 255, 0.671) !important; */
-    width: 75vw;
-    border-radius: 0.5rem;
-    p{text-align: left;
-      font-size: 2rem;
-    }
-  }
-    input {
-      width: 75vw;
+    width: 34rem;
 
-    }
+    .errorContainer {
+      margin: 1rem 0 .5rem;
+      padding: 1rem 2% !important;
+      background-color: black;
+      color: red;
+      width: 34rem;
+      border-radius: 0.5rem;
 
-    .btnContainer .btn {
-      width: 75vw;
+      p {
+        text-align: left;
+        font-size: 2rem;
+      }
     }
 
+    input,
+    .btnContainer .btn,
     .continuation button {
-      width: 75vw;
+      width: 34rem !important;
 
     }
   }

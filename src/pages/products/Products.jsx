@@ -1,7 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import Product from '../../components/product/Product';
-const Brands = () => {
+const Products = () => {
   const {id} = useParams();
   console.log(id)
   return (
@@ -11,4 +11,4 @@ const Brands = () => {
   )
 }
 
-export default Brands
+export default Products

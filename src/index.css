@@ -178,19 +178,12 @@ body::-webkit-scrollbar-thumb {
   }
 }
 
-/* .errorContainer{
-  background-color: black;
-  color:grey;
-  p{
-    font-size: 2rem;
-  }
-} */
+
 .errorContainer {
   margin: 1rem 0 .5rem;
   padding: 1rem 2% !important;
   background-color: black;
   color: red;
-  /* rgba(255, 255, 255, 0.671) !important; */
   width: 45rem;
   border-radius: 0.5rem;
 

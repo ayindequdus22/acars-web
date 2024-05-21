@@ -16,7 +16,6 @@ export const UseAddToCartFunction = () => {
     mutationFn: ({ productId, quantity }) => {
       return addItemToCartQuery({ productId, quantity })
     }, onSuccess: () => {
-      // Invalidate or refetch queries related to the cart to ensure fresh data
       queryClient.invalidateQueries("cart");
     }
   })
@@ -26,7 +25,6 @@ export const useUpdateItemQtyQuery = () => {
   return useMutation({
     mutationKey: ["updateCart"], 
     mutationFn: ({productId, update}) => {
-      console.log(productId)
       return updateItemQuantityQuery({productId, update})
     }, onSuccess: () => {
       queryClient.invalidateQueries("cart");

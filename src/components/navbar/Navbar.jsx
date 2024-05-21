@@ -9,9 +9,9 @@ import { useGetCartHook } from "../../utils/cartQueries";
 
 const Navbar = () => {
   const showme = useContext(showLikedContext);
-const {data,isLoading} = useGetCartHook();
+  const { data, isLoading } = useGetCartHook();
 
-const totalQTY = !isLoading ? data?.cart.totalQuantity : 0
+  const totalQTY = !isLoading ? data?.cart?.totalQuantity : 0
 
   const [active, setActive] = useState(false);
   const onNavScroll = () => {
@@ -88,7 +88,10 @@ const totalQTY = !isLoading ? data?.cart.totalQuantity : 0
                     </picture>
                   </div>
                   <p>{likedItem.name}</p>
-                  <button onClick={() => dispatch(removeFromLiked(likedItem))}>Remove</button>
+                  <button onClick={() => {
+                    dispatch(removeFromLiked(likedItem))
+
+                  }}>Remove</button>
                 </div>
               ))}
 

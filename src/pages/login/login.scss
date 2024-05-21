@@ -4,16 +4,16 @@
   .loginContainer {
     background-color: rgba(31, 41, 55);
     padding: 2rem 1%;
+    width: 45rem;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.582);
     border-radius: 1.5rem;
-    width: 49rem;
 
     .usPcP {
       gap: 1rem;
 
       input {
         height: 4rem;
-        width: 45rem;
+        width: 40rem;
         padding-left: 1rem;
         font-size: 2rem;
         border-radius: 0.5rem;
@@ -22,13 +22,25 @@
     }
 
     .btnContainer {
+      .customContainer {
+        height: 4rem;
+
+        .customLoader {
+          width: 40px;
+          height: 40px;
+        }
+      }
+
       .btn {
-        width: 45rem;
+        transition: all 0s linear;
+        width: 40rem;
         border-radius: 0.5rem;
         font-size: 2rem;
         background-color: rgba(31, 41, 55);
-
         height: 4rem;
+        &:hover{
+          transition: all .5s ease;
+        }
       }
     }
 
@@ -37,6 +49,7 @@
       display: flex;
       width: 100%;
       padding: 1rem 2%;
+
       a:nth-child(1) {
         color: var(--primary-color) !important;
       }
@@ -55,7 +68,7 @@
         border-radius: 0.5rem;
         height: 4rem;
         color: white;
-        width: 45rem;
+        width: 40rem;
 
         div:nth-child(1) {
           border-top-left-radius: 0.5rem;
@@ -90,23 +103,30 @@
 @media (max-width:400px) {
   .loginForm .loginContainer {
     width: 38rem !important;
-    .errorContainer{
-      margin: 1rem 0 .5rem; padding: 1rem 2% !important;
+
+    .errorContainer {
+      margin: 1rem 0 .5rem;
+      padding: 1rem 2% !important;
       background-color: black;
-      color:red;
-       /* rgba(255, 255, 255, 0.671) !important; */
+      color: red;
+      /* rgba(255, 255, 255, 0.671) !important; */
       width: 34rem;
       border-radius: 0.5rem;
-      p{text-align: left;
+
+      p {
+        text-align: left;
         font-size: 2rem;
       }
     }
-    input ,.btnContainer .btn,.continuation button{
+
+    input,
+    .btnContainer .btn,
+    .continuation button {
       width: 34rem !important;
 
     }
 
-  
+
 
   }
 }

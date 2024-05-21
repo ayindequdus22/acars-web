@@ -5,7 +5,7 @@ const createCartQuery = async () => {
         const response = await Axios.get(`/${API_URL}/`);
         return response;
     } catch (error) {
-        // console.log(error)
+        console.log("Can't create cart")
     }
 };
 const fetchCartQuery = async () => {

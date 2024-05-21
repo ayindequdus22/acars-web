@@ -12,7 +12,8 @@ import ShowlikedcontextProvider from './utils/showlikedcontext';
 import { Footer } from './components/footer/Footer';
 import Loader from './Loader';
 import { userContext } from './utils/UserContext';
-const Brands = lazy(() => import('./pages/brand/Brand'));
+import Product from './components/product/Product';
+const Products = lazy(() => import('./pages/products/Products'));
 const Cart = lazy(() => import('./pages/cart/Cart'));
 const ComingSoon = lazy(() => import('./pages/soon/ComingSoon'));
 
@@ -47,14 +48,14 @@ function App() {
           ),
         },
         {
-          path: '/brands',
-          element: user ? (<Brands />) : (
+          path: '/products',
+          element: user ? (< Products/>) : (
             <Navigate to="/login" />
           ),
           children: [
             {
-              path: '/brands/:id',
-              element: <Brands />,
+              path: '/products/:id',
+              element: <Product />,
             },
           ],
         },

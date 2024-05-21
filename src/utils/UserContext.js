@@ -8,10 +8,9 @@ import { useQuery } from '@tanstack/react-query';
     queryFn: async () => {
       try {
         const response = await Axios.get('/auth/myprofile');
-        return response.data; // Assuming you want to return user data
+        return response.data; 
       } catch (error) {
-        console.error('Error fetching data:', error);
-        throw error; // Rethrow the error to handle it outside
+        console.error('Error fetching user data:');
       }
     },
     retry: false,

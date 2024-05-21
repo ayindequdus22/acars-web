@@ -2,6 +2,7 @@ import React, { useRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form';
 import { Axios } from '../../utils/axios';
+import Loader from "../../Loader"
 import './Register.scss'
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
@@ -22,25 +23,21 @@ const Register = () => {
 
   const { mutate, isError, isPending, error } = useMutation({
     mutationFn: async ({ username, email, password }) => {
-      try {
-        const res = await Axios.post("/auth/register", { username, email, password });
-        if (res.statusText !== "Created") {
-          throw new Error("Smth went wrong");
-        }
-        navigate("/login")
-      } catch (error) {
-        console.log(error)
+      const res = await Axios.post("/auth/register", { username, email, password });
+      if (res.status !== 200) {
+        throw new Error('Something went wrong');
       }
+      return res.data;
+
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["authUser"] });
-
+      navigate("/login")
     },
   })
 
   const onSubmit = (data) => {
-    const { username, email, password } = data;
-    mutate({ username, email, password })
+    mutate(data);
   };
 
   return (
@@ -136,18 +133,23 @@ const Register = () => {
             )}
           </div>
           <div className="btnContainer">
-            <button className="btn">Register</button>
+            {isPending ? <Loader /> : <button type='submit'
+              className="btn dfAc">Register </button>}
           </div>
           <div>
             <p>or</p>
           </div>
           <div className="continuation fldc-jc">
-            <Link to={"/login"} className='loginLink' 
-            // style={{ textAlign: "right", padding: "0",color:"red" }}
+            <Link to={"/login"} className='loginLink'
             >Login</Link>
-            <button className='df-ac'>
-              <div className="fab fa-facebook-square"></div>
-              <div>Facebook</div>
+            {isError && <div className="errorContainer">
+              <p className="errorMessage">Can't create an account now try later</p></div>}
+            <button className='df-ac' style={{ background: "blue" }}>
+              <div className="fab fa-facebook-square" style={{
+                padding: " 0 1rem",
+                background: "rgba(26, 0, 143, 0.62)"
+              }}></div>
+              <div >Facebook</div>
             </button>
             <button className='df-ac gmail'>
               <div className="fab fa-google"></div>

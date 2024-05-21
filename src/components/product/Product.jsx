@@ -1,22 +1,15 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addToLiked, removeFromLiked } from '../../store/likeSlice';
+import { addToLiked,  } from '../../store/likeSlice';
 import { useQuery } from '@tanstack/react-query';
 import { Axios } from '../../utils/axios';
+import Loader from '../../Loader';
 import './products.scss';
 import { UseAddToCartFunction } from '../../utils/cartQueries';
 const Product = () => {
   const dispatch = useDispatch();
   const likedItems = useSelector((state) => state.likedSlice.likedItems);
   const addToCart = UseAddToCartFunction()
-  const handleLikeClick = (productItem) => {
-    const isLiked = likedItems.some(item => item.id === productItem.id);
-    if (isLiked) {
-      dispatch(removeFromLiked(productItem));
-    } else {
-      dispatch(addToLiked(productItem));
-    }
-  };
   const { data: products, isLoading } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
@@ -28,15 +21,16 @@ const Product = () => {
   return (
     <div className="brandProductsContainer fldc">
       <h3>Products</h3>
-      <div className="brandProducts fldcW">
+      {isLoading ? <Loader/> :  <div className="brandProducts fldcW">
         {products?.data.map((productItem) => {
-          // console.log(productItem)
-          const isLiked = likedItems.some(item => item.id === productItem._id);
+          const isLiked = likedItems.some(item => item._id === productItem._id);
           return (
             <div className="brand" key={productItem._id}>
               <div
                 className={isLiked ? "fa fa-heart active" : "fa fa-heart"}
-                onClick={() => handleLikeClick(productItem)}
+                onClick={() => dispatch(addToLiked(productItem))
+
+                }
               ></div>
               <div className="image">
                 <picture>
@@ -60,6 +54,8 @@ const Product = () => {
           );
         })}
       </div>
+      }
+    
     </div>
   );
 };
