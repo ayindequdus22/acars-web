@@ -3,10 +3,6 @@
   height: 10vh;
   position: fixed;
   top: 0;
-  // color: #28282B;
-  // color: #1C1C1E;
-  // background-color: #28282b !important ;
-  // box-shadow: 0px 0px 4px rgba(255, 255, 255, 0.842);
   bottom: 0;
   align-items: center;
   z-index: 500;
@@ -28,6 +24,51 @@
   .icons {
     display: flex;
     gap: 2.5rem;
+
+    .user {
+      position: relative;
+      border-radius: 2px;
+   
+
+
+      .userContainer {
+        &.active{
+          display: flex;
+        }
+      display: none;
+        width: 15rem;
+        padding: 1rem 4% 0;
+        border-radius: 1rem;
+        gap: .5rem;
+        background-color: rgba(4, 12, 24, 0.884);
+        z-index: 200;
+        box-shadow: 0 0 5px var(--primary-color);
+        position: absolute;
+        top: 5rem;
+        right: -5rem;
+        border: 1px solid var(--primary-color);
+
+        .btn {
+          height: 4rem;
+          width: 15rem;
+          border-bottom-left-radius: 1rem;
+          border-bottom-right-radius: 1rem;
+        }
+
+        p:nth-child(1) {
+          text-transform: uppercase;
+
+          font-size: 3rem;
+          text-align: center;
+          // padding: 1.3rem;
+          width: 7rem;
+          height: 7rem;
+          // background-color: random-color();
+          border: 1px solid white;
+          border-radius: 50%;
+        }
+      }
+    }
 
     .fa {
       cursor: pointer;
@@ -69,15 +110,17 @@
     height: 100vh;
     width: 100%;
     left: 200rem;
-    z-index: 100;
+    z-index: 300;
     top: 0;
     display: flex;
     justify-content: flex-end;
     transition: all 1s ease;
-.emptyLikeContainer{
-  height: 100vh;
-  width: 100%;
-}
+
+    .emptyLikeContainer {
+      height: 100vh;
+      width: 100%;
+    }
+
     &.active {
       left: 0;
     }
@@ -95,7 +138,7 @@
         cursor: pointer;
         font-size: 3rem;
       }
-    } 
+    }
 
     .likedItemsContainer {
       width: 40rem;

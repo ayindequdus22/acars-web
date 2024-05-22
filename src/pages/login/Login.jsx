@@ -11,7 +11,7 @@ function Login() {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const navigate = useNavigate();
 
-  const { mutate, isError, isPending, error } = useMutation({
+  const { mutate, isError, isPending, } = useMutation({
     mutationFn: async ({ email, password }) => {
       const res = await Axios.post('/auth/login', { email, password });
       if (res.status !== 200) {

@@ -24,7 +24,7 @@ const Register = () => {
   const { mutate, isError, isPending, error } = useMutation({
     mutationFn: async ({ username, email, password }) => {
       const res = await Axios.post("/auth/register", { username, email, password });
-      if (res.status !== 200) {
+      if (res.status !== 201) {
         throw new Error('Something went wrong');
       }
       return res.data;
