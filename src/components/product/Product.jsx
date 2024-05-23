@@ -4,8 +4,18 @@ import { addToLiked,  } from '../../store/likeSlice';
 import { useQuery } from '@tanstack/react-query';
 import { Axios } from '../../utils/axios';
 import Loader from '../../Loader';
+import { toast } from 'react-toastify';
 import './products.scss';
 import { UseAddToCartFunction } from '../../utils/cartQueries';
+const toastME =({img})=>{
+  return(
+    <div className="addToast">
+<div className="img">
+<img src={img} />
+</div>
+    </div>
+  )
+}
 const Product = () => {
   const dispatch = useDispatch();
   const likedItems = useSelector((state) => state.likedSlice.likedItems);
@@ -44,6 +54,10 @@ const Product = () => {
                   style={{ height: "4rem", width: "13rem", fontSize: '1.5rem' }}
                   className='btn'
                   onClick={async () => {
+                    console.log(productItem.image)
+                      toast(
+                      <toastME img={productItem.image}/>
+                    );
                     addToCart.mutate({ productId: productItem._id, quantity: 1 })
                   }}
                 >

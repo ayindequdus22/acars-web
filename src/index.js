@@ -1,27 +1,42 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-// import { Toaster } from 'react-hot-toast';
+import { ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 import reportWebVitals from './reportWebVitals';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import UserContentProvider from './utils/UserContext';
 import './index.css';
 const queryClient = new QueryClient({
-	defaultOptions: {
-		queries: {
-			refetchOnWindowFocus: false,
-		},
-	},
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
 });
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-          <QueryClientProvider client={queryClient}>
-
-    {/* <Toaster position='top-center' reverseOrder={false} /> */}
-    <UserContentProvider>
-    <App />
-    </UserContentProvider>
+    <QueryClientProvider client={queryClient}>
+      <ToastContainer toastClassName="toastBody" className="toastContainer"
+        position="bottom-right" style={{
+          zIndex:20
+        }}
+        limit={4}
+        progressClassName="progressClass"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
+      <UserContentProvider>
+        <App />
+      </UserContentProvider>
     </QueryClientProvider >
 
   </React.StrictMode>

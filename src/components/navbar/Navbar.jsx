@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect,useRef, useContext } from "react";
 import "./navbar.scss";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate,Navigate } from "react-router-dom";
 import { removeFromLiked } from '../../store/likeSlice';
 import { showLikedContext } from "../../utils/showlikedcontext";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,20 +8,24 @@ import { useGetCartHook } from "../../utils/cartQueries";
 import { userContext } from "../../utils/UserContext";
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Axios } from "../../utils/axios";
+import Loader from "../../Loader";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
+  const navigate = useNavigate()
   const queryClient = useQueryClient();
-  const navigate = useNavigate();
-  const { mutate, isLoading: isPending, isError } = useMutation({
+  const { mutate, isPending, error } = useMutation({
     mutationKey: ["logout"], 
     mutationFn: async () => {
        const res = await Axios.post("/auth/logout");
        return res.data;
-    }, 
+    }, retry:false,
     onSuccess: () => {
       queryClient.invalidateQueries(["cart", "authUser", "overview"]);
-      navigate("/login");
-    }
+      localStorage.clear();
+      window.location.reload();
+      navigate("../login", { replace: true });
+    },
   });
 
   const user = useContext(userContext);
@@ -30,14 +34,19 @@ const Navbar = () => {
   const [userModal, showUserModal] = useState(false);
   const totalQTY = !isLoading ? data?.cart.totalQuantity : 0;
   const [active, setActive] = useState(false);
-
+  // const navElement = document.querySelector(".nav");
+  const navElement = useRef(null)
+ 
   const onNavScroll = () => {
-    const navElement = document.querySelector(".nav");
+    showme.setShow(false)
+    setActive(false);
+    navElement.current?.classList.remove("activeTwo");
     if (window.scrollY > 50) {
-      navElement.classList.add("activeTwo");
+      navElement.current?.classList.add("activeTwo");
     } else {
-      navElement.classList.remove("activeTwo");
+      navElement.current?.classList.remove("activeTwo");
     }
+    
   };
 
   useEffect(() => {
@@ -53,13 +62,16 @@ const Navbar = () => {
 
   const dispatch = useDispatch();
   const likedItems = useSelector((state) => state.likedSlice.likedItems);
-
+if(isPending){
+  return <Loader/>
+}
   return (
-    <div className={`nav df-jsb ${active ? "active" : ""}`}>
+    <>
+     <div  ref={navElement}  className={`nav df-jsb ${active ? "active" : ""}`}>
       <Link to="/">A-Cars</Link>
       <div className="links df">
         <NavLink to="/">Home</NavLink>
-        <NavLink to="/brands">Brands</NavLink>
+        <NavLink to="/products">Products</NavLink>
         <NavLink to="/coming-soon">Coming Soon</NavLink>
         <NavLink to="/contact-us">Contact Us</NavLink>
       </div>
@@ -114,7 +126,15 @@ const Navbar = () => {
         )}
       </div>
     </div>
+    {error &&  (<>
+   { toast("Can't logout")}
+   <Navigate to="/" />
+    </>)
+}
+    </>
+   
   );
 };
 
 export default Navbar;
+// the toast shows four times if there is an error logging out instead once

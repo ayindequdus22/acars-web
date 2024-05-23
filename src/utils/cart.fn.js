@@ -20,7 +20,6 @@ const fetchCartQuery = async () => {
 const addItemToCartQuery = async ({ productId, quantity }) => {
     try {
         const response = await Axios.post(`/${API_URL}/add`, { productId, quantity });
-        console.log(response.data)
         return response.data;
     } catch (error) {
         console.log("Couldn't Add To Cart")
