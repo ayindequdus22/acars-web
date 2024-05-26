@@ -3,9 +3,7 @@ import Product from '../../components/product/Product';
 const Products = () => {
 
   return (
-    <>
-
-<Product />    </>
+    <Product />
   )
 }
 

@@ -1,6 +1,7 @@
 
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { fetchCartQuery, addItemToCartQuery, removeItemFromCartQuery, updateItemQuantityQuery, clearCartQuery, createCartQuery } from './cart.fn';
+import { toast } from 'react-toastify';
 
 
 export const useGetCartHook = () => {
@@ -12,10 +13,11 @@ export const useGetCartHook = () => {
 export const UseAddToCartFunction = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationKey: ["addToCart"], 
+    mutationKey: ["addToCart"],
     mutationFn: ({ productId, quantity }) => {
       return addItemToCartQuery({ productId, quantity })
-    }, onSuccess: () => {
+    },
+    onSuccess: () => {
       queryClient.invalidateQueries("cart");
     }
   })
@@ -23,9 +25,9 @@ export const UseAddToCartFunction = () => {
 export const useUpdateItemQtyQuery = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationKey: ["updateCart"], 
-    mutationFn: ({productId, update}) => {
-      return updateItemQuantityQuery({productId, update})
+    mutationKey: ["updateCart"],
+    mutationFn: ({ productId, update }) => {
+      return updateItemQuantityQuery({ productId, update })
     }, onSuccess: () => {
       queryClient.invalidateQueries("cart");
     }
@@ -40,7 +42,7 @@ export const useCreateCart = () => {
 export const UseRemoveItemCartFunction = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationKey: ["removeItem"], 
+    mutationKey: ["removeItem"],
     mutationFn: (productId) => {
       return removeItemFromCartQuery({ productId })
     }, onSuccess: () => {
@@ -48,15 +50,18 @@ export const UseRemoveItemCartFunction = () => {
     }
   })
 }
-
+const Cleared = () => {
+  return <p>Cart has been clear</p>
+}
 export const useClearCart = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationKey: ["removeItem"], 
+    mutationKey: ["removeItem"],
     mutationFn: () => {
       return clearCartQuery()
     }, onSuccess: () => {
       queryClient.invalidateQueries("cart");
+      toast(<Cleared />, { containerId: 'A' })
     }
   })
 }

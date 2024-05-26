@@ -1,5 +1,9 @@
 .overviewProductsContainer {
   padding: 6rem 4% 2rem;
+  .customContainer {
+    height: 50vh !important;
+    width: 100%;
+  }
 
   .overviewProducts {
     gap: 1rem 2rem;

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import "./comingsoon.scss";
-import img from "../../assets/RoFjQ2Z.jpg";
 
 const ComingSoon = () => {
   const [days, setDays] = useState(0);
@@ -32,7 +31,7 @@ const ComingSoon = () => {
     <div className="comingSoon">
       <div className="image">
         <picture>
-          <img src={img} loading="lazy" alt="" />
+          <img src="https://res.cloudinary.com/dxoemtk19/image/upload/v1715175712/image_3_pjfsbn.jpg" loading="lazy" alt="" />
         </picture>
       </div>
       <div className="details fldc">

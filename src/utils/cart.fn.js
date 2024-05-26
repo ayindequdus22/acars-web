@@ -5,7 +5,7 @@ const createCartQuery = async () => {
         const response = await Axios.get(`/${API_URL}/`);
         return response;
     } catch (error) {
-        console.log("Can't create cart")
+        console.error("Can't create cart")
     }
 };
 const fetchCartQuery = async () => {
@@ -13,7 +13,7 @@ const fetchCartQuery = async () => {
         const response = await Axios.get(`/${API_URL}/items`);
         return response.data;
     } catch (error) {
-        console.log("Couldn't Get Cart")
+        console.error("Couldn't Get Cart")
     }
 };
 
@@ -22,7 +22,7 @@ const addItemToCartQuery = async ({ productId, quantity }) => {
         const response = await Axios.post(`/${API_URL}/add`, { productId, quantity });
         return response.data;
     } catch (error) {
-        console.log("Couldn't Add To Cart")
+        console.error("Couldn't Add To Cart")
     }
 };
 const updateItemQuantityQuery = async ({ productId, update }) => {
@@ -30,7 +30,7 @@ const updateItemQuantityQuery = async ({ productId, update }) => {
         const response = await Axios.post(`/${API_URL}/update`, { productId, update });
         return response.data;
     } catch (error) {
-        console.log("Couldn't Update Cart")
+        console.error("Couldn't Update Cart")
     }
 };
 const removeItemFromCartQuery = async ({ productId }) => {
@@ -38,7 +38,7 @@ const removeItemFromCartQuery = async ({ productId }) => {
         const response = await Axios.post(`/${API_URL}/remove`, { productId });
         return response.data;
     } catch (error) {
-        console.log("Couldn't Remove Item Cart")
+        console.error("Couldn't Remove Item Cart")
     }
 };
 
@@ -49,7 +49,7 @@ const clearCartQuery = async () => {
         const response = await Axios.post(`/${API_URL}/clear`);
         return response.data;
     } catch (error) {
-        console.log("Couldn't Clear Cart")
+        console.error("Couldn't Clear Cart")
     }
 };
 export { clearCartQuery, createCartQuery, fetchCartQuery, addItemToCartQuery, removeItemFromCartQuery, updateItemQuantityQuery }

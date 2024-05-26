@@ -18,9 +18,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <ToastContainer toastClassName="toastBody" className="toastContainer"
+      <ToastContainer containerId="A" toastClassName="toastBody" className="toastContainer"
         position="bottom-right" style={{
-          zIndex:20
+          zIndex: 20
         }}
         limit={4}
         progressClassName="progressClass"

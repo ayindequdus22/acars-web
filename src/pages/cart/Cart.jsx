@@ -5,6 +5,9 @@ import Loader from '../../Loader';
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { UseRemoveItemCartFunction, useClearCart, useGetCartHook, useUpdateItemQtyQuery } from "../../utils/cartQueries";
+import Navbar from "../../components/navbar/Navbar";
+import { Footer } from "../../components/footer/Footer";
+import { ToastME } from "../../components/product/Product";
 
 const Cart = () => {
   const removeFromCart = UseRemoveItemCartFunction();
@@ -16,7 +19,7 @@ const Cart = () => {
 
   return (
     <>
-
+      <Navbar />
 
 
       {data?.cart && data?.cart.cartItems == 0 ? (
@@ -30,7 +33,7 @@ const Cart = () => {
           : <>
             <div className="cartContainer">
               <div className="total df-jsb">
-                <p>Total:</p><span>{data?.cart?.totalPrice}</span>
+                <p>Total:</p><span>{totalAmount}</span>
               </div>
               <div className="necessities">
                 <div>
@@ -88,8 +91,6 @@ const Cart = () => {
                             +
                           </button>
                         </div>
-
-
                         <div className="details">
                           <p>{newPrice}</p>
                           <p>
@@ -101,6 +102,7 @@ const Cart = () => {
                           <button
                             onClick={() => {
                               removeFromCart.mutate(cartItem.product._id)
+                              toast(<ToastME product={cartItem} name={cartItem.product.name} text={`${cartItem.product.name} has been removed `} />, { containerId: 'A' })
                             }}
                           >
                             Remove Item
@@ -139,8 +141,11 @@ const Cart = () => {
                 </div>
               </div>
             </div>
+
           </>
       )}
+      <Footer />
+      <div className="sizedBox"></div>
     </>
 
 

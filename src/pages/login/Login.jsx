@@ -84,7 +84,7 @@ function Login() {
           <Link to={'/register'}>Forgot Password</Link>
         </div>
         <div className="btnContainer">
-          {isPending ?  <Loader /> :<button type='submit'
+          {isPending ? <Loader /> : <button type='submit'
             className="btn dfAc">Login </button>}
         </div>
         <div style={{ padding: '1rem 0 2rem 0' }}>

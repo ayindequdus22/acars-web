@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 :root {
 
   --bg-color: rgba(4, 12, 24);
   ;
-  --item-color:rgba(31, 41, 55, 0.1) ;
+  --item-color: rgba(31, 41, 55, 0.1);
   --primary-color: rgba(52, 152, 219);
 
 }
@@ -44,18 +45,19 @@ a {
 .fa-check {
   color: var(--primary-color);
 }
-.toastContainer{
-  /* background: #000; */
-}
-.toastBody{
-  background: var(--bg-color);z-index: 100 !important;
+
+.toastBody {
+  background: var(--bg-color);
+  z-index: 100 !important;
   box-shadow: 0 0 4px rgba(255, 255, 255, 0.192);
   z-index: 30 !important;
 }
-.progressClass{
+
+.progressClass {
   background: var(--primary-color);
 
 }
+
 .authInfoContainer {
   background-color: black;
   color: white;
@@ -87,11 +89,22 @@ body::-webkit-scrollbar-thumb {
 
 }
 
+.addToast {
+  gap: 1rem;
 
+  .img img {
+    height: 6rem;
+    width: 8rem;
+  }
+
+  p {
+    font-size: 1.5rem;
+  }
+}
 
 
 .footer {
-  margin-top: 2rem;
+
   padding: 2rem 4% 0;
   background-color: rgb(22, 29, 39) !important;
 
@@ -109,8 +122,8 @@ body::-webkit-scrollbar-thumb {
       margin: .3rem;
 
       &:hover {
-        background: var(--pink);
         transition: all .5s ease;
+        background: var(--pink);
         transform: rotate(360deg);
       }
     }
@@ -167,6 +180,7 @@ body::-webkit-scrollbar-thumb {
 .customContainer {
   height: 100vh;
   width: 100vw;
+  z-index: 400;
 }
 
 .customContainer .customLoader {
