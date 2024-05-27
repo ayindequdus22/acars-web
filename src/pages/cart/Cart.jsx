@@ -22,7 +22,7 @@ const Cart = () => {
       <Navbar />
 
 
-      {data?.cart && data?.cart.cartItems == 0 ? (
+      {data?.cart && data?.cart.cartItems === 0 ? (
         <>
           <div className="emptyCart dfAc">
             <h1>Cart is empty</h1>
@@ -102,7 +102,7 @@ const Cart = () => {
                           <button
                             onClick={() => {
                               removeFromCart.mutate(cartItem.product._id)
-                              toast(<ToastME product={cartItem} name={cartItem.product.name} text={`${cartItem.product.name} has been removed `} />, { containerId: 'A' })
+                              toast(<ToastME image={cartItem.product.image} name={cartItem.product.name} text={`${cartItem.product.name} has been removed `} />, { containerId: 'A' })
                             }}
                           >
                             Remove Item
