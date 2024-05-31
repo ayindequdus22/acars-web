@@ -22,7 +22,7 @@ const Cart = () => {
       <Navbar />
 
 
-      {data?.cart && data?.cart.cartItems === 0 ? (
+      {data?.cart.cartItems === 0 ? (
         <>
           <div className="emptyCart dfAc">
             <h1>Cart is empty</h1>
