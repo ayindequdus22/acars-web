@@ -14,7 +14,7 @@ function Login() {
   const { mutate, isError, isPending, } = useMutation({
     mutationFn: async ({ email, password }) => {
       const res = await Axios.post('/auth/login', { email, password });
-      if (res.status !== 200) {
+      if (res.status !== 202) {
         throw new Error('Something went wrong');
       }
       return res.data;
