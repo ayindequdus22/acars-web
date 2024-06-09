@@ -46,20 +46,20 @@ a.active {
 
 @media (max-width:800px) {
   .heroPage {
-    height: 80vh;
+    height: 80vh !important;
     .image {
       picture img {
-        height: 80vh;
+        height: 80vh !important;
       }
     }
     }
 }
 @media (max-width: 550px) {
   .heroPage {
-      height: 65vh;
+      height: 65vh !important;
       .image {
         picture img {
-          height: 65vh;
+          height: 65vh !important;
         }
       }
     .details {
