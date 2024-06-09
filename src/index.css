@@ -48,7 +48,7 @@ a {
 
 .toastBody {
   background: var(--bg-color);
-  z-index: 100 !important;
+  z-index: 300 !important;
   box-shadow: 0 0 4px rgba(255, 255, 255, 0.192);
   z-index: 30 !important;
 }

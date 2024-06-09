@@ -43,7 +43,16 @@ a.active {
     text-shadow: 0 0 1px rgba(255, 255, 255, 0.842);
   }
 }
-
+@media (max-width:420px) {
+  .heroPage {
+    height: 72vh !important;
+    .image {
+      picture img {
+        height: 72vh !important;
+      }
+    }
+    }
+}
 @media (max-width:800px) {
   .heroPage {
     height: 80vh !important;
