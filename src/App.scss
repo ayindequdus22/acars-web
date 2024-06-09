@@ -44,8 +44,25 @@ a.active {
   }
 }
 
+@media (max-width:800px) {
+  .heroPage {
+    height: 80vh;
+    .image {
+      picture img {
+        height: 80vh;
+      }
+    }
+    }
+}
 @media (max-width: 550px) {
-  .heroPage .details {
+  .heroPage {
+      height: 65vh;
+      .image {
+        picture img {
+          height: 65vh;
+        }
+      }
+    .details {
     h1 {
       font-size: 5rem;
       width: 100% !important;
@@ -56,6 +73,7 @@ a.active {
       line-height: 1rem;
       font-size: 2rem;
     }
+  }
   }
 }
 
