@@ -17,11 +17,12 @@ function Login() {
       if (res.status !== 202) {
         throw new Error('Something went wrong');
       }
+      navigate('/');
       return res.data;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['authUser'] });
-      navigate('/');
+    
     },
   });
 
