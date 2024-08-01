@@ -1,21 +1,24 @@
 
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { fetchCartQuery, addItemToCartQuery, removeItemFromCartQuery, updateItemQuantityQuery, clearCartQuery, createCartQuery } from './cart.fn';
 import { toast } from 'react-toastify';
 
 
 export const useGetCartHook = () => {
   return useQuery({
     queryKey: ['getCart'],
-    queryFn: fetchCartQuery
+    queryFn: async () => {
+      const response = await Axios.get(`/${API_URL}/items`);
+      return response.data;
+    }
   });
 }
 export const UseAddToCartFunction = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationKey: ["addToCart"],
-    mutationFn: ({ productId, quantity }) => {
-      return addItemToCartQuery({ productId, quantity })
+    mutationFn: async ({ productId, quantity }) => {
+      const response = await Axios.post(`/${API_URL}/add`, { productId, quantity });
+      return response.data;
     },
     onSuccess: () => {
       queryClient.invalidateQueries("cart");
@@ -26,8 +29,9 @@ export const useUpdateItemQtyQuery = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationKey: ["updateCart"],
-    mutationFn: ({ productId, update }) => {
-      return updateItemQuantityQuery({ productId, update })
+    mutationFn: async ({ productId, update }) => {
+      const response = await Axios.post(`/${API_URL}/update`, { productId, update });
+      return response.data;
     }, onSuccess: () => {
       queryClient.invalidateQueries("cart");
     }
@@ -36,15 +40,19 @@ export const useUpdateItemQtyQuery = () => {
 export const useCreateCart = () => {
   return useQuery({
     queryKey: ['createCart'],
-    queryFn: createCartQuery
+    queryFn: async () => {
+      const response = await Axios.get(`/${API_URL}/`);
+      return response;
+    }
   });
 }
 export const UseRemoveItemCartFunction = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationKey: ["removeItem"],
-    mutationFn: (productId) => {
-      return removeItemFromCartQuery({ productId })
+    mutationFn: async ({ productId }) => {
+      const response = await Axios.post(`/${API_URL}/remove`, { productId });
+      return response.data;
     }, onSuccess: () => {
       queryClient.invalidateQueries("cart");
     }
@@ -57,8 +65,9 @@ export const useClearCart = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationKey: ["removeItem"],
-    mutationFn: () => {
-      return clearCartQuery()
+    mutationFn: async () => {
+      const response = await Axios.post(`/${API_URL}/clear`);
+      return response.data;
     }, onSuccess: () => {
       queryClient.invalidateQueries("cart");
       toast(<Cleared />, { containerId: 'A' })

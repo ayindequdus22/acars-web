@@ -23,8 +23,8 @@ const Navbar = () => {
     onSuccess: () => {
       queryClient.invalidateQueries(["cart", "authUser", "overview"]);
       localStorage.clear();
-      window.location.reload();
-      navigate("../login", { replace: true });
+      // window.location.reload();
+      navigate("/login", { replace: true });
     },
   });
 

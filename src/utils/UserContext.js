@@ -6,12 +6,8 @@ const UserContentProvider = ({ children }) => {
   const { data, isLoading, error, } = useQuery({
     queryKey: ['authUser'],
     queryFn: async () => {
-      try {
-        const response = await Axios.get('/auth/myprofile');
-        return response.data?.user;
-      } catch (error) {
-        console.error('Error fetching user data:');
-      }
+      const response = await Axios.get('/auth/myprofile');
+      return response.data?.user;
     },
     retry: false,
   });
