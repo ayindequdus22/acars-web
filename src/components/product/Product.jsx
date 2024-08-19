@@ -28,7 +28,7 @@ const Product = () => {
       return response.data;
     },
     onError: (error) => {
-      toast.error(`Failed to fetch products: ${error.message}`);
+      toast.error(`Failed to fetch products: ${error.message}`, { containerId: 'A' });
     },
   });
 

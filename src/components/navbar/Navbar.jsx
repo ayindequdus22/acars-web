@@ -26,7 +26,7 @@ const Navbar = () => {
       navigate("/login", { replace: true });
     },
     onError: (error) => {
-      toast.error(`Logout failed: ${error.message}`);
+      toast.error(`Logout failed: ${error.message}`, { containerId: 'A' });
     },
   });
 
@@ -127,7 +127,7 @@ const Navbar = () => {
         </div>
       </div>
       {error && (<>
-        {toast("Can't logout")}
+        {toast("Can't logout", { containerId: 'A' })}
         <Navigate to="/" />
       </>)
       }

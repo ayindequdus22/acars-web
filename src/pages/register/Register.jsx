@@ -22,7 +22,7 @@ const Register = () => {
   const navigate = useNavigate();
 
 
-  const { mutate, isError, isPending, error } = useMutation({
+  const { mutate, isError, isPending, error:myerror } = useMutation({
     mutationFn: async ({ username, email, password }) => {
       const res = await Axios.post("/auth/register", { username, email, password });
       // if (res.status !== 201) {
@@ -35,7 +35,7 @@ const Register = () => {
       queryClient.invalidateQueries({ queryKey: ["authUser"] });
       navigate("/login")
     }, onError: () => {
-      toast.error("Registration failed")
+      toast.error("Registration failed", { containerId: 'A' })
     }
   })
 
@@ -146,7 +146,7 @@ const Register = () => {
             <Link to={"/login"} className='loginLink'
             >Login</Link>
             {isError && <div className="errorContainer">
-              <p className="errorMessage">Can't create an account now try later</p></div>}
+              <p className="errorMessage">${myerror.message}</p></div>}
             <button className='df-ac' style={{ background: "blue" }}>
               <div className="fab fa-facebook-square" style={{
                 padding: " 0 1rem",

@@ -12,7 +12,7 @@ function Login() {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const navigate = useNavigate();
 
-  const { mutate, isError, isPending, } = useMutation({
+  const { mutate, isError, isPending,error:myError } = useMutation({
     mutationFn: async ({ email, password }) => {
       const res = await Axios.post('/auth/login', { email, password });
       return res.data;
@@ -21,7 +21,7 @@ function Login() {
       queryClient.invalidateQueries({ queryKey: ['authUser'] });
     navigate('/');
     },onError:()=>{
-      toast.error("Login failed")
+      toast.error("Login failed", { containerId: 'A' })
     }
   });
 
@@ -91,7 +91,7 @@ function Login() {
           <p>Or Login With</p>
         </div>
         {isError && <div className="errorContainer">
-          <p className="errorMessage">Invalid user name or password</p></div>}
+          <p className="errorMessage">{myError.message}</p></div>}
         <div className="continuation fldc-jc">
           <button type='button' className='df-ac'><div className="fab fa-facebook-square"></div><div>Facebook</div> </button>
           <button type='button' className='df-ac gmail'><div className="fab fa-google"></div> <div>Google</div> </button>
