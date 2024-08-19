@@ -12,7 +12,7 @@ export const useGetCartHook = () => {
       return response.data;
     },
     onError: (error) => {
-      toast.error(<p>Failed to fetch cart</p>, { containerId: 'A' });
+      toast.error(<p>Failed to fetch cart: </p>, { containerId: 'A' });
     }
   });
 }
@@ -29,7 +29,7 @@ export const useAddToCartFunction = () => {
       queryClient.invalidateQueries("getCart");
     },
     onError: (error) => {
-      toast.error(<p>Failed to add item to cart</p>, { containerId: 'A' });
+      toast.error(<p>Failed to add item to cart: </p>, { containerId: 'A' });
     }
   });
 }
@@ -46,7 +46,7 @@ export const useUpdateItemQtyQuery = () => {
       queryClient.invalidateQueries("getCart");
     },
     onError: (error) => {
-      toast.error(<p>Failed to update item quantity</p>, { containerId: 'A' });
+      toast.error(<p>Failed to update item quantity: </p>, { containerId: 'A' });
     }
   });
 }
@@ -59,7 +59,7 @@ export const useCreateCart = () => {
       return response.data;
     },
     onError: (error) => {
-      toast.error(<p>Failed to create cart</p>, { containerId: 'A' });
+      toast.error(<p>Failed to create cart: </p>, { containerId: 'A' });
     }
   });
 }
@@ -69,17 +69,15 @@ export const useRemoveItemCartFunction = () => {
   return useMutation({
     mutationKey: ["removeItem"],
     mutationFn: async ({ productId }) => {
-      const id = productId._id
-      const response = await Axios.post(`/${API_URL}/remove`, { id });
+      const response = await Axios.post(`/${API_URL}/remove`, { productId });
       return response.data;
     },
     onSuccess: () => {
       queryClient.invalidateQueries("getCart");
-      toast(<ToastME image={productId.image} name={productId.name} text={`${productId.name} has been removed `} />, { containerId: 'A' })
 
     },
     onError: (error) => {
-      toast.error(<p>Failed to remove item from cart</p>, { containerId: 'A' });
+      toast.error(<p>Failed to remove item from cart: </p>, { containerId: 'A' });
     }
   });
 }
@@ -101,7 +99,7 @@ export const useClearCart = () => {
       toast(<Cleared />, { containerId: 'A' });
     },
     onError: (error) => {
-      toast.error(<p>Failed to clear cart</p>, { containerId: 'A' });
+      toast.error(<p>Failed to clear cart: </p>, { containerId: 'A' });
     }
   });
 }

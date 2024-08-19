@@ -101,7 +101,9 @@ const Cart = () => {
                         <div className="remove">
                           <button
                             onClick={() => {
-                              removeFromCart.mutate(cartItem.product)
+                              removeFromCart.mutate(cartItem.product._id)
+                              removeFromCart.isSuccess && toast(<ToastME image={cartItem.product.image} name={cartItem.product.name} text={`${cartItem.product.name} has been removed `} />, { containerId: 'A' })
+
                             }}
                           >
                             Remove Item
