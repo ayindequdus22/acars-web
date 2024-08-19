@@ -24,7 +24,7 @@ const Product = () => {
   const { data: products, isLoading } = useQuery({
     queryKey: ['products'],
     queryFn: async () => {
-      const response = await Axios.get(`/${API_URL}/products/all-products`);
+      const response = await Axios.get(`/products/all-products`);
       return response.data;
     },
     onError: (error) => {
