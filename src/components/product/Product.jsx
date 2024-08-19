@@ -6,7 +6,7 @@ import { Axios } from '../../utils/axios';
 import Loader from '../../Loader';
 import { toast } from 'react-toastify';
 import './products.scss';
-import { UseAddToCartFunction } from '../../utils/cartQueries';
+import { useAddToCartFunction } from '../../utils/cartQueries';
 export const ToastME = ({ image, name, text }) => {
   return (
     <div className="addToast dfAc">
@@ -20,14 +20,17 @@ export const ToastME = ({ image, name, text }) => {
 const Product = () => {
   const dispatch = useDispatch();
   const likedItems = useSelector((state) => state.likedSlice.likedItems);
-  const { mutate: addToCart } = UseAddToCartFunction()
+  const { mutate: addToCart } = useAddToCartFunction()
   const { data: products, isLoading } = useQuery({
-    queryKey: ["products"],
+    queryKey: ['products'],
     queryFn: async () => {
-      const data = await Axios.get("/products/all-products");
-      return data;
-    }
-  })
+      const response = await Axios.get(`/${API_URL}/products/all-products`);
+      return response.data;
+    },
+    onError: (error) => {
+      toast.error(`Failed to fetch products: ${error.message}`);
+    },
+  });
 
   return (
     <div className="brandProductsContainer fldc">

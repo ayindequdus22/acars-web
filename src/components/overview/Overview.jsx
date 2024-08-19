@@ -14,7 +14,9 @@ const Overview = () => {
     queryFn: async () => {
       const result = await Axios.get("/overviews")
       return result;
-    }
+    }, onError: (error) => {
+      toast.error(`Request failed: ${error.message}`);
+    },
   })
   return (
     <div className="overviewProductsContainer fldc">

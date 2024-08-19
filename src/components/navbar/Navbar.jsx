@@ -23,8 +23,10 @@ const Navbar = () => {
     onSuccess: () => {
       queryClient.invalidateQueries(["cart", "authUser", "overview"]);
       localStorage.clear();
-      // window.location.reload();
       navigate("/login", { replace: true });
+    },
+    onError: (error) => {
+      toast.error(`Logout failed: ${error.message}`);
     },
   });
 

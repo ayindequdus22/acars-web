@@ -1,18 +1,22 @@
 
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
-
-
+import { Axios } from './axios';
+const API_URL = "cart"
 export const useGetCartHook = () => {
   return useQuery({
     queryKey: ['getCart'],
     queryFn: async () => {
       const response = await Axios.get(`/${API_URL}/items`);
       return response.data;
+    },
+    onError: (error) => {
+      toast.error(`Failed to fetch cart: ${error.message}`);
     }
   });
 }
-export const UseAddToCartFunction = () => {
+
+export const useAddToCartFunction = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationKey: ["addToCart"],
@@ -21,10 +25,14 @@ export const UseAddToCartFunction = () => {
       return response.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries("cart");
+      queryClient.invalidateQueries("getCart");
+    },
+    onError: (error) => {
+      toast.error(`Failed to add item to cart: ${error.message}`);
     }
-  })
+  });
 }
+
 export const useUpdateItemQtyQuery = () => {
   const queryClient = useQueryClient();
   return useMutation({
@@ -32,45 +40,64 @@ export const useUpdateItemQtyQuery = () => {
     mutationFn: async ({ productId, update }) => {
       const response = await Axios.post(`/${API_URL}/update`, { productId, update });
       return response.data;
-    }, onSuccess: () => {
-      queryClient.invalidateQueries("cart");
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries("getCart");
+    },
+    onError: (error) => {
+      toast.error(`Failed to update item quantity: ${error.message}`);
     }
-  })
+  });
 }
+
 export const useCreateCart = () => {
   return useQuery({
     queryKey: ['createCart'],
     queryFn: async () => {
       const response = await Axios.get(`/${API_URL}/`);
-      return response;
+      return response.data;
+    },
+    onError: (error) => {
+      toast.error(`Failed to create cart: ${error.message}`);
     }
   });
 }
-export const UseRemoveItemCartFunction = () => {
+
+export const useRemoveItemCartFunction = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationKey: ["removeItem"],
     mutationFn: async ({ productId }) => {
       const response = await Axios.post(`/${API_URL}/remove`, { productId });
       return response.data;
-    }, onSuccess: () => {
-      queryClient.invalidateQueries("cart");
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries("getCart");
+    },
+    onError: (error) => {
+      toast.error(`Failed to remove item from cart: ${error.message}`);
     }
-  })
+  });
 }
+
 const Cleared = () => {
-  return <p>Cart has been clear</p>
+  return <p>Cart has been cleared</p>;
 }
+
 export const useClearCart = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationKey: ["removeItem"],
+    mutationKey: ["clearCart"],
     mutationFn: async () => {
       const response = await Axios.post(`/${API_URL}/clear`);
       return response.data;
-    }, onSuccess: () => {
-      queryClient.invalidateQueries("cart");
-      toast(<Cleared />, { containerId: 'A' })
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries("getCart");
+      toast(<Cleared />, { containerId: 'A' });
+    },
+    onError: (error) => {
+      toast.error(`Failed to clear cart: ${error.message}`);
     }
-  })
+  });
 }

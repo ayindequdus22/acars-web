@@ -4,13 +4,13 @@ import "./cart.scss";
 import Loader from '../../Loader';
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { UseRemoveItemCartFunction, useClearCart, useGetCartHook, useUpdateItemQtyQuery } from "../../utils/cartQueries";
+import { useRemoveItemCartFunction, useClearCart, useGetCartHook, useUpdateItemQtyQuery } from "../../utils/cartQueries";
 import Navbar from "../../components/navbar/Navbar";
 import { Footer } from "../../components/footer/Footer";
 import { ToastME } from "../../components/product/Product";
 
 const Cart = () => {
-  const removeFromCart = UseRemoveItemCartFunction();
+  const removeFromCart = useRemoveItemCartFunction();
   const clearCart = useClearCart();
   const { data, isLoading } = useGetCartHook();
   const totalQTY = data?.cart.totalQuantity;
