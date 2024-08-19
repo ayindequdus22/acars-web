@@ -25,9 +25,6 @@ const Register = () => {
   const { mutate, isError, isPending, error:myerror } = useMutation({
     mutationFn: async ({ username, email, password }) => {
       const res = await Axios.post("/auth/register", { username, email, password });
-      // if (res.status !== 201) {
-      //   throw new Error('Something went wrong');
-      // }
       return res.data;
 
     },
@@ -146,7 +143,7 @@ const Register = () => {
             <Link to={"/login"} className='loginLink'
             >Login</Link>
             {isError && <div className="errorContainer">
-              <p className="errorMessage">${myerror.message}</p></div>}
+              <p className="errorMessage">Can't create account now</p></div>}
             <button className='df-ac' style={{ background: "blue" }}>
               <div className="fab fa-facebook-square" style={{
                 padding: " 0 1rem",
