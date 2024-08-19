@@ -5,6 +5,7 @@ import { Axios } from '../../utils/axios';
 import Loader from "../../Loader"
 import './Register.scss'
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { toast } from 'react-toastify';
 
 const Register = () => {
   const validatePassword = (value) => {
@@ -24,16 +25,18 @@ const Register = () => {
   const { mutate, isError, isPending, error } = useMutation({
     mutationFn: async ({ username, email, password }) => {
       const res = await Axios.post("/auth/register", { username, email, password });
-      if (res.status !== 201) {
-        throw new Error('Something went wrong');
-      }
+      // if (res.status !== 201) {
+      //   throw new Error('Something went wrong');
+      // }
       return res.data;
 
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["authUser"] });
       navigate("/login")
-    },
+    }, onError: () => {
+      toast.error("Registration failed")
+    }
   })
 
   const onSubmit = (data) => {

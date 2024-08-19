@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import './login.scss'
 import Loader from "../../Loader"
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { toast } from 'react-toastify';
 function Login() {
 
   const queryClient = useQueryClient();
@@ -14,16 +15,14 @@ function Login() {
   const { mutate, isError, isPending, } = useMutation({
     mutationFn: async ({ email, password }) => {
       const res = await Axios.post('/auth/login', { email, password });
-      if (res.status !== 202) {
-        throw new Error('Something went wrong');
-      }
-      navigate('/');
       return res.data;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['authUser'] });
-    
-    },
+    navigate('/');
+    },onError:()=>{
+      toast.error("Login failed")
+    }
   });
 
   const onSubmit = (data) => {
