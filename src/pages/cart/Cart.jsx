@@ -101,7 +101,7 @@ const Cart = () => {
                         <div className="remove">
                           <button
                             onClick={() => {
-                              removeFromCart.mutate(cartItem.product._id)
+                              removeFromCart.mutate(cartItem.product)
                             }}
                           >
                             Remove Item

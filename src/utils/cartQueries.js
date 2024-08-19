@@ -69,12 +69,13 @@ export const useRemoveItemCartFunction = () => {
   return useMutation({
     mutationKey: ["removeItem"],
     mutationFn: async ({ productId }) => {
-      const response = await Axios.post(`/${API_URL}/remove`, { productId });
+      const id = productId._id
+      const response = await Axios.post(`/${API_URL}/remove`, { id });
       return response.data;
     },
     onSuccess: () => {
       queryClient.invalidateQueries("getCart");
-      toast(<ToastME image={cartItem.product.image} name={cartItem.product.name} text={`${cartItem.product.name} has been removed `} />, { containerId: 'A' })
+      toast(<ToastME image={productId.image} name={productId.name} text={`${productId.name} has been removed `} />, { containerId: 'A' })
 
     },
     onError: (error) => {
