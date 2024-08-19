@@ -29,7 +29,7 @@ export const Engineer = () => {
             <div className="details fldc" style={{ padding: "1rem 0 0" }}>
               <p>{eng.text}</p>
               <p>{eng.prof}</p>
-              <Link className='pageLinks' style={{ width: "15rem", height: "4rem", fontSize: "2rem" }}>View Details</Link>
+              <Link className='pageLinks' style={{ height: "4rem", fontSize: "2rem" }}>View Details</Link>
             </div>
           </div>
         ))}

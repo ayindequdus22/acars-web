@@ -21,7 +21,7 @@ function Login() {
       queryClient.invalidateQueries({ queryKey: ['authUser'] });
     navigate('/');
     },onError:()=>{
-      toast.error("Login failed", { containerId: 'A' })
+      toast.error(<p>Login failed</p>, { containerId: 'A' })
     }
   });
 
@@ -91,7 +91,7 @@ function Login() {
           <p>Or Login With</p>
         </div>
         {isError && <div className="errorContainer">
-          <p className="errorMessage">{myError.message}</p></div>}
+          <p className="errorMessage">Invalid username or password</p></div>}
         <div className="continuation fldc-jc">
           <button type='button' className='df-ac'><div className="fab fa-facebook-square"></div><div>Facebook</div> </button>
           <button type='button' className='df-ac gmail'><div className="fab fa-google"></div> <div>Google</div> </button>
