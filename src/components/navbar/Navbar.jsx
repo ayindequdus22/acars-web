@@ -22,8 +22,10 @@ const Navbar = () => {
     }, retry: false,
     onSuccess: () => {
       queryClient.invalidateQueries(["cart", "authUser", "overview"]);
-        navigate("/login");
-        localStorage.clear();
+      window.location.reload();
+
+      navigate("/login");
+      localStorage.clear();
     },
     onError: () => {
       toast.error(<p>Logout failed</p>, { containerId: 'A' });
@@ -128,7 +130,7 @@ const Navbar = () => {
       </div>
       {error && (<>
         {toast("Can't logout", { containerId: 'A' })}
-        <Navigate to="/" />
+
       </>)
       }
     </>
