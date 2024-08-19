@@ -36,7 +36,7 @@ const Product = () => {
     <div className="brandProductsContainer fldc">
       <h3>Products</h3>
       {isLoading ? <Loader /> : <div className="brandProducts fldcW">
-        {products?.data?.map((productItem) => {
+        {products?.map((productItem) => {
           const isLiked = likedItems.some(item => item._id === productItem._id);
           return (
             <div className="brand" key={productItem._id}>
