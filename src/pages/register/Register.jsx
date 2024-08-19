@@ -35,7 +35,7 @@ const Register = () => {
       queryClient.invalidateQueries({ queryKey: ["authUser"] });
       navigate("/login")
     }, onError: () => {
-      toast.error("Registration failed", { containerId: 'A' })
+      toast.error(<p>Registration failed</p>, { containerId: 'A' })
     }
   })
 

@@ -22,11 +22,11 @@ const Navbar = () => {
     }, retry: false,
     onSuccess: () => {
       queryClient.invalidateQueries(["cart", "authUser", "overview"]);
-      localStorage.clear();
-      navigate("/login", { replace: true });
+        navigate("/login");
+        localStorage.clear();
     },
-    onError: (error) => {
-      toast.error(`Logout failed: ${error.message}`, { containerId: 'A' });
+    onError: () => {
+      toast.error(<p>Logout failed</p>, { containerId: 'A' });
     },
   });
 

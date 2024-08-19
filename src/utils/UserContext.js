@@ -12,7 +12,7 @@ const UserContentProvider = ({ children }) => {
     },
     retry: false,  
     onError: (error) => {
-      toast.error(`Failed to fetch user profile: ${error.message}`, { containerId: 'A' });
+      toast.error(<p>Failed to fetch user profile</p>, { containerId: 'A' });
     },
   });
   return (

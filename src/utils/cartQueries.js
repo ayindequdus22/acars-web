@@ -2,6 +2,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 import { Axios } from './axios';
+import { ToastME } from '../components/product/Product';
 const API_URL = "cart"
 export const useGetCartHook = () => {
   return useQuery({
@@ -11,7 +12,7 @@ export const useGetCartHook = () => {
       return response.data;
     },
     onError: (error) => {
-      toast.error(`Failed to fetch cart: ${error.message}`, { containerId: 'A' });
+      toast.error(<p>Failed to fetch cart</p>, { containerId: 'A' });
     }
   });
 }
@@ -28,7 +29,7 @@ export const useAddToCartFunction = () => {
       queryClient.invalidateQueries("getCart");
     },
     onError: (error) => {
-      toast.error(`Failed to add item to cart: ${error.message}`, { containerId: 'A' });
+      toast.error(<p>Failed to add item to cart</p>, { containerId: 'A' });
     }
   });
 }
@@ -45,7 +46,7 @@ export const useUpdateItemQtyQuery = () => {
       queryClient.invalidateQueries("getCart");
     },
     onError: (error) => {
-      toast.error(`Failed to update item quantity: ${error.message}`, { containerId: 'A' });
+      toast.error(<p>Failed to update item quantity</p>, { containerId: 'A' });
     }
   });
 }
@@ -58,7 +59,7 @@ export const useCreateCart = () => {
       return response.data;
     },
     onError: (error) => {
-      toast.error(`Failed to create cart: ${error.message}`, { containerId: 'A' });
+      toast.error(<p>Failed to create cart</p>, { containerId: 'A' });
     }
   });
 }
@@ -73,9 +74,11 @@ export const useRemoveItemCartFunction = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries("getCart");
+      toast(<ToastME image={cartItem.product.image} name={cartItem.product.name} text={`${cartItem.product.name} has been removed `} />, { containerId: 'A' })
+
     },
     onError: (error) => {
-      toast.error(`Failed to remove item from cart: ${error.message}`, { containerId: 'A' });
+      toast.error(<p>Failed to remove item from cart</p>, { containerId: 'A' });
     }
   });
 }
@@ -97,7 +100,7 @@ export const useClearCart = () => {
       toast(<Cleared />, { containerId: 'A' });
     },
     onError: (error) => {
-      toast.error(`Failed to clear cart: ${error.message}`, { containerId: 'A' });
+      toast.error(<p>Failed to clear cart</p>, { containerId: 'A' });
     }
   });
 }
