@@ -32,7 +32,11 @@
 
 
       .userContainer {
-    display: none;
+        &.active {
+          display: flex;
+        }
+
+        display: none;
         width: 15rem;
         padding: 1rem 4% 0;
         border-radius: 1rem;
@@ -44,11 +48,7 @@
         top: 5rem;
         right: -5rem;
         border: 1px solid var(--primary-color);
-     &.active {
-          display: flex;
-        }
 
-       
         .btn {
           height: 4rem;
           width: 15rem;
