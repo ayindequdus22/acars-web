@@ -108,13 +108,13 @@
       .orderHeader {
         padding: 1.5rem 1rem;
         display: flex;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.185);
 
         p {
           font-size: 2.2rem;
           color: var(--primary-color);
         }
 
-        border-bottom: 1px solid rgba(255, 255, 255, 0.185);
       }
 
       .subtotal {
