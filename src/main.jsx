@@ -15,7 +15,7 @@ const queryClient = new QueryClient({
 createRoot(document.getElementById('root')).render(
   <StrictMode>
 <QueryClientProvider client={queryClient}>
-      <ToastContainer containerId="A" toastClassName="toastBody" className="toastContainer"
+      <ToastContainer toastClassName="toastBody" className="toastContainer"
         position="bottom-right" style={{
           zIndex: 20
         }}

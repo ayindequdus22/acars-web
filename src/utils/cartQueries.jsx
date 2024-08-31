@@ -12,7 +12,7 @@ export const useGetCartHook = () => {
       return response.data;
     },
     onError: (error) => {
-      toast.error(<p>Failed to fetch cart: </p>, { containerId: 'A' });
+      toast.error(<p>Failed to fetch cart: </p>,);
     }
   });
 }
@@ -29,7 +29,7 @@ export const useAddToCartFunction = () => {
       queryClient.invalidateQueries("getCart");
     },
     onError: (error) => {
-      toast.error(<p>Failed to add item to cart: </p>, { containerId: 'A' });
+      toast.error(<p>Failed to add item to cart: </p>,);
     }
   });
 }
@@ -46,7 +46,7 @@ export const useUpdateItemQtyQuery = () => {
       queryClient.invalidateQueries("getCart");
     },
     onError: (error) => {
-      toast.error(<p>Failed to update item quantity: </p>, { containerId: 'A' });
+      toast.error(<p>Failed to update item quantity: </p>,);
     }
   });
 }
@@ -59,7 +59,7 @@ export const useCreateCart = () => {
       return response.data;
     },
     onError: (error) => {
-      toast.error(<p>Failed to create cart: </p>, { containerId: 'A' });
+      toast.error(<p>Failed to create cart: </p>,);
     }
   });
 }
@@ -77,7 +77,7 @@ export const useRemoveItemCartFunction = () => {
 
     },
     onError: (error) => {
-      toast.error(<p>Failed to remove item from cart: </p>, { containerId: 'A' });
+      toast.error(<p>Failed to remove item from cart: </p>,);
     }
   });
 }
@@ -96,10 +96,10 @@ export const useClearCart = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries("getCart");
-      toast(<Cleared />, { containerId: 'A' });
+      toast(<Cleared />,);
     },
     onError: (error) => {
-      toast.error(<p>Failed to clear cart: </p>, { containerId: 'A' });
+      toast.error(<p>Failed to clear cart: </p>,);
     }
   });
 }
