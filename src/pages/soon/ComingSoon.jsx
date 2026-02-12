@@ -9,7 +9,7 @@ const ComingSoon = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const comingDate = new Date("1 October 2024");
+      const comingDate = new Date("1 October 2027");
       const presentDate = new Date();
       const myDate = comingDate - presentDate;
 
